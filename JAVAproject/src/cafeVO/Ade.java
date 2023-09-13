@@ -1,8 +1,8 @@
 package cafeVO;
 
 public class Ade {
-	String name;
-	int price;
+	String name;		// 메뉴이름
+	int price;			// 가격
 	
 	public Ade(String name, int price) {
 		this.name = name;

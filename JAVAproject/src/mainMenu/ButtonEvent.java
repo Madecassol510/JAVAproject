@@ -1,4 +1,4 @@
-package Map;
+package mainMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +16,5 @@ public class ButtonEvent implements ActionListener{
 		else if(e.getActionCommand().equals("종료")) {
 			System.exit(0);
 		}
-
 	}
 }

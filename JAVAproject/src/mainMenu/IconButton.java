@@ -1,4 +1,4 @@
-package Map;
+package mainMenu;
 
 public class IconButton {
 	public IconButton() {

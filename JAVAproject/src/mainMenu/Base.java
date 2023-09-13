@@ -1,4 +1,4 @@
-package Map;
+package mainMenu;
 
 import java.awt.Color;
 import java.awt.Toolkit;

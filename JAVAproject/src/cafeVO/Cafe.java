@@ -3,14 +3,16 @@ package cafeVO;
 public class Cafe {
 	
 	
-	String name;
-	String adress;
+	String name;		// 상호명
+	String adress;		// 주소
 	
 	Coffee[] coffee;
 	Ade[] ade;
 	Smoothie[] smoothie;
 	Tea[] tea;
 	
+	
+	// 생성자
 	public Cafe(String name,String adress, Coffee[] coffee, Ade[] ade, Smoothie[] smoothie, Tea[] tea ) {
 		this.name = name;
 		this.adress = adress;
@@ -21,6 +23,8 @@ public class Cafe {
 		this.tea = tea;
 	}
 
+	
+	// Get/set메소드
 	public String getName() {
 		return name;
 	}

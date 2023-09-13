@@ -1,7 +1,7 @@
 package main;
 
-import Map.Base;
-import Map.MainPanel;
+import mainMenu.Base;
+import mainMenu.MainPanel;
 
 public class Main {
 	public static void main(String[] args) {

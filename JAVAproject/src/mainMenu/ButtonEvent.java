@@ -2,13 +2,14 @@ package mainMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import mainMenu.search.InputSearch;
+import mainMenu.search.SearchWindow;
 
 public class ButtonEvent implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("검색")) {
+			SearchWindow sw= new SearchWindow();
+			sw.setVisible(true);
 			
 		}
 		

@@ -28,6 +28,8 @@ public class Cafe {
 		this.smoothie = smoothie;
 		this.tea = tea;
 	}
+	
+	
 
 	
 	// Get/set메소드

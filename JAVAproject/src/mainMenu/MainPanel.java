@@ -8,10 +8,11 @@ import javax.swing.JPanel;
 public class MainPanel extends JPanel{
 	public MainPanel() {
 		setLayout(new BorderLayout());
-		setSize(600,800);
+		setSize(484,662);
 		
-		add(new MapPanel());
-		add(new MenuPanel());
-
+		add(new Category());
+		add(new MenuPanel(),"South");
 	}
+	
+	
 }

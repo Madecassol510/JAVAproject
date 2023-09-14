@@ -6,18 +6,17 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Base extends JFrame{
+public class FrameBase extends JFrame{
 	
-	private static Base instance;
+	private static FrameBase instance;
 	
-	public Base(JPanel e) {
+	public FrameBase(JPanel e) {
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
-		setBounds((int)tk.getScreenSize().getWidth()/2 -300,
-				(int)tk.getScreenSize().getHeight()/2-400, 600,800);
+		setBounds((int)tk.getScreenSize().getWidth()/2 -250,
+				(int)tk.getScreenSize().getHeight()/2-300, 500,700);
 			
 		setLayout(null);
-		
 		add(e);
 		setResizable(false);  		
 		setVisible(true);	
@@ -26,9 +25,8 @@ public class Base extends JFrame{
 	
 	public static void getInstance(JPanel e) {
 		if(instance == null) {
-			instance = new Base(e);
-		}
-		
+			instance = new FrameBase(e);
+		}	
 		instance.getContentPane().removeAll();
 		instance.getContentPane().add(e);
 		

@@ -1,10 +1,10 @@
 package main;
 
-import mainMenu.Base;
+import mainMenu.FrameBase;
 import mainMenu.MainPanel;
 
 public class Main {
 	public static void main(String[] args) {
-		Base.getInstance(new MainPanel());
+		FrameBase.getInstance(new MainPanel());
 	}
 }

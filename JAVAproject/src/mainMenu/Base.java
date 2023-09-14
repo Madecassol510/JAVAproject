@@ -12,16 +12,12 @@ public class Base extends JFrame{
 	
 	public Base(JPanel e) {
 		
-		
-		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		setBounds((int)tk.getScreenSize().getWidth()/2 -300,
 				(int)tk.getScreenSize().getHeight()/2-400, 600,800);
-		
-		
+			
 		setLayout(null);
 		
-	
 		add(e);
 		setResizable(false);  		
 		setVisible(true);	

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class CafeDAO {
 	private static ArrayList<Cafe> list;
 	
+	
+	
 	public CafeDAO() {
 		if (list == null) 
 			init();

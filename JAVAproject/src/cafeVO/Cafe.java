@@ -1,6 +1,12 @@
 package cafeVO;
 
+import java.util.ArrayList;
+
 public class Cafe {
+	private static ArrayList<Coffee> coffeeList = new ArrayList<>();
+	private static ArrayList<Ade> adeList = new ArrayList<>();
+	private static ArrayList<Smoothie> smoothieList = new ArrayList<>();
+	private static ArrayList<Tea> teaList = new ArrayList<>();
 	
 	
 	String name;		// 상호명
@@ -72,4 +78,27 @@ public class Cafe {
 	public void setTea(Tea[] tea) {
 		this.tea = tea;
 	}
+
+
+	
+	
+	public static ArrayList<Coffee> getCoffeeList() {
+		return coffeeList;
+	}
+
+
+	public static ArrayList<Ade> getAdeList() {
+		return adeList;
+	}
+
+
+	public static ArrayList<Smoothie> getSmoothieList() {
+		return smoothieList;
+	}
+
+
+	public static ArrayList<Tea> getTeaList() {
+		return teaList;
+	}
+	
 }

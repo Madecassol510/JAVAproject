@@ -15,7 +15,7 @@ public class CafeDAO {
 	private void init() {
 		list = new ArrayList<Cafe>();
 		
-		// #1 스타벅스종로관수점
+		// #0 스타벅스종로관수점
 		list.add(new Cafe("스타벅스종로관수점", "서울특별시 종로구 삼일대로20길 13",
 				
 				// 커피
@@ -33,6 +33,190 @@ public class CafeDAO {
 				// 차
 				new Tea[] {new Tea("제주유기녹차",5300), new Tea("얼그레이티",4500), new Tea("캐모마일티",4500), new Tea("히비스커스티",4500)})		// 차
 				);	
+		
+		// #1-1 투썸플레이스 종각역점
+		list.add(new Cafe("투썸플레이스 종각역점", "서울특별시 종로구 종로 72",
+				
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 5900), new Coffee("카페모카", 5500), new Coffee("바닐라라떼", 5500)},
+				
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",6500), 																					// 에이드
+						new Ade("자몽에이드",5800), new Ade("복숭아에이드",6000), new Ade("샤인머스캣청포도에이드", 6300)},
+				
+				// 스무디(없음)
+				new Smoothie[] {null},
+				
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);			
+		
+		// #1-2 투썸플레이스 을지로점
+		list.add(new Cafe("투썸플레이스 을지로점", "서울 중구 남대문로10길 30",
+						
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 5900), new Coffee("카페모카", 5500), new Coffee("바닐라라떼", 5500)},
+						
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",6500), 																					// 에이드
+						new Ade("자몽에이드",5800), new Ade("복숭아에이드",6000), new Ade("샤인머스캣청포도에이드", 6300)},
+						
+				// 스무디
+				new Smoothie[] {null},
+						
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);
+		
+		// #1-3 투썸플레이스 청계천광교점
+		list.add(new Cafe("투썸플레이스 청계천광교점", "서울 중구 남대문로 120 대일빌딩 1층",
+								
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 5900), new Coffee("카페모카", 5500), new Coffee("바닐라라떼", 5500)},
+								
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",6500), 																					// 에이드
+						new Ade("자몽에이드",5800), new Ade("복숭아에이드",6000), new Ade("샤인머스캣청포도에이드", 6300)},
+								
+				// 스무디
+				new Smoothie[] {null},
+								
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);
+
+		// #1-4 투썸플레이스 종로알파빌딩점
+		list.add(new Cafe("투썸플레이스 종로알파빌딩점", "서울 종로구 종로 34 알파빌딩 1층",
+								
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 5900), new Coffee("카페모카", 5500), new Coffee("바닐라라떼", 5500)},
+								
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",6500), 																					// 에이드
+						new Ade("자몽에이드",5800), new Ade("복숭아에이드",6000), new Ade("샤인머스캣청포도에이드", 6300)},
+								
+				// 스무디
+				new Smoothie[] {null},
+								
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);
+
+		// #1-5 투썸플레이스 서린동청계광장점
+		list.add(new Cafe("투썸플레이스 서린동청계광장점", "서울 종로구 청계천로 17 B1F~3F",
+								
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 5900), new Coffee("카페모카", 5500), new Coffee("바닐라라떼", 5500)},
+								
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",6500), 																					// 에이드
+						new Ade("자몽에이드",5800), new Ade("복숭아에이드",6000), new Ade("샤인머스캣청포도에이드", 6300)},
+								
+				// 스무디
+				new Smoothie[] {null},
+								
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);
+		
+		// #2-1 힘이나는커피생활 종로젊음의거리점
+		list.add(new Cafe("투썸플레이스 서린동청계광장점", "서울 종로구 종로12길 15 종로코아빌딩 1층",
+								
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 1800), new Coffee("카페라떼", 2900)	, 													// 커피
+						new Coffee("카라멜마끼아또", 3700), new Coffee("카페모카", 3900), new Coffee("바닐라라떼", 3400)},
+								
+				// 에이드
+				new Ade[] {new Ade("레몬에이드",3700), 																					// 에이드
+						new Ade("자몽에이드",3700), new Ade("청포도에이드", 3700)},
+								
+				// 스무디
+				new Smoothie[] {new Smoothie("딸기요거트스무디", 4200), new Smoothie("블루베리요거트스무디", 4200), new Smoothie("플레인요거트스무디", 4200), 
+						new Smoothie("망고요거트스무디", 4200)},
+								
+				// 차
+				new Tea[] {new Tea("피치블랙티",6000), new Tea("딸기젤리밀크티",7000), new Tea("잉글리쉬브렉퍼스트",5100), new Tea("제주유기농녹차",4800), 
+						new Tea("로얄밀크티",5500), new Tea("허니레몬티",6100), new Tea("카모마일",5100), new Tea("크림카라멜",5100), 
+						new Tea("프렌치얼그레이",5100), new Tea("그나와민트티",5100), new Tea("애플민트티",6100), new Tea("유자레몬티",5500), 
+						new Tea("오렌지자몽티",5500)})		// 차
+				);
+		
+		//3-1 스타벅스 종각점 (3번내용 조사 x, 0번이랑 동일)
+		list.add(new Cafe("스타벅스종각점", "서울특별시 종로구 종로 64",
+				
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 2000), new Coffee("카페모카", 2000), new Coffee("바닐라라떼", 2000)},
+				
+				// 에이드
+				new Ade[] {new Ade("유자패션피지오",5900), 																					// 에이드
+						new Ade("쿨라임피지오",5900), new Ade("피치딸기피지오",5700)},
+				
+				// 스무디
+				new Smoothie[] {new Smoothie("망고바나나스무디",6300), new Smoothie("피치요거트블렌디드",6100), new Smoothie("망고패션티블렌디드",5400), // 스무디
+						new Smoothie("딸기요거트스무디",6300), new Smoothie("자몽허니스무디",6300)},
+				
+				// 차
+				new Tea[] {new Tea("제주유기녹차",5300), new Tea("얼그레이티",4500), new Tea("캐모마일티",4500), new Tea("히비스커스티",4500)})		// 차
+				);
+		
+		//3-2 스타벅스 종로관철점 (3번내용 조사 x, 0번이랑 동일)
+		list.add(new Cafe("스타벅스종로관철점", "서울특별시 종로구 종로12길 21",
+				
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 2000), new Coffee("카페모카", 2000), new Coffee("바닐라라떼", 2000)},
+				
+				// 에이드
+				new Ade[] {new Ade("유자패션피지오",5900), 																					// 에이드
+						new Ade("쿨라임피지오",5900), new Ade("피치딸기피지오",5700)},
+				
+				// 스무디
+				new Smoothie[] {new Smoothie("망고바나나스무디",6300), new Smoothie("피치요거트블렌디드",6100), new Smoothie("망고패션티블렌디드",5400), // 스무디
+						new Smoothie("딸기요거트스무디",6300), new Smoothie("자몽허니스무디",6300)},
+				
+				// 차
+				new Tea[] {new Tea("제주유기녹차",5300), new Tea("얼그레이티",4500), new Tea("캐모마일티",4500), new Tea("히비스커스티",4500)})		// 차
+				);
+		
+		//3-3 스타벅스 종로R점 (3번내용 조사 x, 0번이랑 동일)
+		list.add(new Cafe("스타벅스종로R점", "서울특별시 종로구 종로 51",
+				
+				// 커피
+				new Coffee[]{new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2000)	, 													// 커피
+						new Coffee("카라멜마끼아또", 2000), new Coffee("카페모카", 2000), new Coffee("바닐라라떼", 2000)},
+				
+				// 에이드
+				new Ade[] {new Ade("유자패션피지오",5900), 																					// 에이드
+						new Ade("쿨라임피지오",5900), new Ade("피치딸기피지오",5700)},
+				
+				// 스무디
+				new Smoothie[] {new Smoothie("망고바나나스무디",6300), new Smoothie("피치요거트블렌디드",6100), new Smoothie("망고패션티블렌디드",5400), // 스무디
+						new Smoothie("딸기요거트스무디",6300), new Smoothie("자몽허니스무디",6300)},
+				
+				// 차
+				new Tea[] {new Tea("제주유기녹차",5300), new Tea("얼그레이티",4500), new Tea("캐모마일티",4500), new Tea("히비스커스티",4500)})		// 차
+				);		
 		
 		// #4-1 메가MGC커피 종각역점 (4-2도 상호명 주소 제외 동일)
 		list.add(new Cafe("메가MGC커피 종각역점", "서울 종로구 종로 80-2 1층",

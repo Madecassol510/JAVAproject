@@ -33,9 +33,9 @@ public class SearchWindow extends JFrame{
 		textPanel.setBackground(Color.green);
 		
 		add(textPanel);
-		add(new InputPanel(), "South");
+		add(new InputPanel(this), "South");
 		
 		setVisible(true);
+		
 	}
-
 }

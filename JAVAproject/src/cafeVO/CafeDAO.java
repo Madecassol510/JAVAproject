@@ -10,10 +10,10 @@ public class CafeDAO {
 	//==============================================================
 	private static HashSet<Menu> totalMenu = new HashSet<>();
 	
-	private static ArrayList<Coffee> coffeeCategory = new ArrayList<>();
-	private static ArrayList<Ade> adeCategory = new ArrayList<>();
-	private static ArrayList<Smoothie> smoothieCategory = new ArrayList<>();
-	private static ArrayList<Tea> teaCategory = new ArrayList<>();
+	private static ArrayList<String> coffeeCategory = new ArrayList<>();
+	private static ArrayList<String> adeCategory = new ArrayList<>();
+	private static ArrayList<String> smoothieCategory = new ArrayList<>();
+	private static ArrayList<String> teaCategory = new ArrayList<>();
 	
 	public CafeDAO(){
 		if (list == null) {
@@ -569,46 +569,45 @@ public class CafeDAO {
 	private void setCategory() {
 		for(Menu menu : totalMenu) {
 			if(menu instanceof Coffee) {
-				Coffee obj = (Coffee) menu;
-				coffeeCategory.add(obj);
+				coffeeCategory.add(menu.getName());
 			}
 			else if(menu instanceof Ade) {
 				Ade obj = (Ade) menu;
-				adeCategory.add(obj);
+				adeCategory.add(menu.getName());
 			}
 			else if(menu instanceof Smoothie) {
 				Smoothie obj = (Smoothie) menu;
-				smoothieCategory.add(obj);
+				smoothieCategory.add(menu.getName());
 			}
 			else if(menu instanceof Tea) {
 				Tea obj = (Tea) menu;
-				teaCategory.add(obj);
+				teaCategory.add(menu.getName());
 			}
 		}
 	}
 	
 	
+	public static ArrayList<Cafe> getList() {
+		return list;
+	}
+	
 	public static HashSet<Menu> getTotalMenu() {
 		return totalMenu;
 	}
 
-	public static ArrayList<Cafe> getList() {
-		return list;
-	}
-
-	public static ArrayList<Coffee> getCoffeeCategory() {
+	public static ArrayList<String> getCoffeeCategory() {
 		return coffeeCategory;
 	}
 
-	public static ArrayList<Ade> getAdeCategory() {
+	public static ArrayList<String> getAdeCategory() {
 		return adeCategory;
 	}
 
-	public static ArrayList<Smoothie> getSmoothieCategory() {
+	public static ArrayList<String> getSmoothieCategory() {
 		return smoothieCategory;
 	}
 
-	public static ArrayList<Tea> getTeaCategory() {
+	public static ArrayList<String> getTeaCategory() {
 		return teaCategory;
 	}
 }

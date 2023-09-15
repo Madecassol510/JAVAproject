@@ -9,6 +9,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -22,7 +23,7 @@ public class InputPanel extends JPanel{
 	SearchPanel sp;
 	ButtonPanel bp;
 
-	public InputPanel() {	
+	public InputPanel(JFrame searchWindow) {	
 		textField = new JTextField();
 		searchBt = new Button("검색");
 		category = new Choice();
@@ -38,18 +39,15 @@ public class InputPanel extends JPanel{
 		add(sp);
 		add(bp,"East");
 		
-		
-	
 		searchBt.addActionListener(new ActionListener() {		
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(e.getActionCommand().equals("검색")) {
 					if(category.getSelectedItem().equals("카테고리") || textField.getText().equals("")) {
-						JOptionPane.showMessageDialog(null, "제대로 입력");
+						JOptionPane.showMessageDialog(null, "제대로 입력해주세요");
 					}		
-					else {
-						ResultWindow rw = new ResultWindow();
-						rw.setVisible(true);
+					else{
+						ResultCheck rc = new ResultCheck(category.getSelectedItem(), textField.getText(), searchWindow);
 					}
 				}		
 			}
@@ -57,7 +55,7 @@ public class InputPanel extends JPanel{
 	}
 	
 	// 입력부
-	class SearchPanel extends JPanel{		
+	class SearchPanel extends JPanel{
 		public SearchPanel() {
 				
 			category.add("카테고리");

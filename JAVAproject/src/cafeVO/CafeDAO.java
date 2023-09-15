@@ -18,7 +18,7 @@ public class CafeDAO {
 	public CafeDAO(){
 		if (list == null) {
 			init();
-			
+			setCategory();
 		}
 			
 	}
@@ -611,5 +611,4 @@ public class CafeDAO {
 	public static ArrayList<Tea> getTeaCategory() {
 		return teaCategory;
 	}
-	
 }

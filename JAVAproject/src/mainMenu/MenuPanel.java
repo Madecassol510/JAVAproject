@@ -14,10 +14,6 @@ public class MenuPanel extends JPanel{
 		setBackground(Color.RED);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
 		
-//		JButton bt1 = new JButton("리스트");
-//		JButton bt2 = new JButton("게임");
-//		JButton bt3 = new JButton("종료");
-		
 		ArrayList<JButton> MenuBt = new ArrayList<JButton>();
 		
 		MenuBt.add(new JButton("검색"));

@@ -8,10 +8,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -25,8 +22,7 @@ public class InputPanel extends JPanel{
 	SearchPanel sp;
 	ButtonPanel bp;
 
-	public InputPanel() {
-		
+	public InputPanel() {	
 		textField = new JTextField();
 		searchBt = new Button("검색");
 		category = new Choice();
@@ -43,47 +39,21 @@ public class InputPanel extends JPanel{
 		add(bp,"East");
 		
 		
-		
-		if(category.getSelectedItem().toString().equals("카테고리")) {
-			searchBt.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, "카테고리를 선택해주세요");
-				}
-			});
-		}
-		else if(category.getSelectedItem().toString().equals("커피")){
-			searchBt.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, category.getSelectedItem ());
-				}
-			});
-		}
-		else if(category.getSelectedItem().toString().equals("에이드")){
-			searchBt.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, category.getSelectedItem ());
-				}
-			});
-		}
-		else if(category.getSelectedItem().toString().equals("스무디")){
-			searchBt.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, category.getSelectedItem ());
-				}
-			});
-		}
-		else if(category.getSelectedItem().toString().equals("차")){
-			searchBt.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					JOptionPane.showMessageDialog(null, category.getSelectedItem ());
-				}
-			});
-		}
+	
+		searchBt.addActionListener(new ActionListener() {		
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(e.getActionCommand().equals("검색")) {
+					if(category.getSelectedItem().equals("카테고리") || textField.getText().equals("")) {
+						JOptionPane.showMessageDialog(null, "제대로 입력");
+					}		
+					else {
+						ResultWindow rw = new ResultWindow();
+						rw.setVisible(true);
+					}
+				}		
+			}
+		});
 	}
 	
 	// 입력부
@@ -116,6 +86,7 @@ public class InputPanel extends JPanel{
 			searchBt.setPreferredSize(new Dimension(75,75));
 			
 			add(searchBt);		
+			
 		}
 	}
 }

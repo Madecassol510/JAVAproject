@@ -9,7 +9,6 @@ public class ResultWindow extends JFrame{
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		setBounds((int)tk.getScreenSize().getWidth()/2 -150,
 				(int)tk.getScreenSize().getHeight()/2-90, 300,190);
-		
 
 	}
 }

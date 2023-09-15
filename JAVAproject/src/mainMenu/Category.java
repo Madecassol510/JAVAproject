@@ -34,7 +34,7 @@ public class Category extends JPanel{
 		
 		for(int i=0; i< categoryBt.size(); i++) {
 			categoryMenu.add(categoryBt.get(i));
-			categoryBt.get(i).addActionListener(new ButtonEvent());
+			categoryBt.get(i).addActionListener(new MainMenuButtonEvent());
 		}
 	}
 }

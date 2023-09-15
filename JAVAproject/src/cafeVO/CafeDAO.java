@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 public class CafeDAO {
 	private static ArrayList<Cafe> list;
-
+	private static ArrayList<Menu> totalMenu = new ArrayList<>();
+	
+	
 	public CafeDAO() {
 		if (list == null)
 			init();
@@ -636,39 +638,47 @@ public class CafeDAO {
 				new Tea[] { new Tea("유자피치그린티", 4800), new Tea("허브티", 4800), }));
 
 		// #16. (16-1) 커피디엔에이
-		list.add(new Cafe("커피디엔에이광화문점", "서울특별시 종로구 종로 33 1층",
+		list.add(new Cafe("커피디엔에이광화문점", "서울특별시 종로구 종로 33 1층", new Menu[] {
 
 				// 커피
-				new Coffee[] { new Coffee("아메리카노", 4000), new Coffee("카페라떼", 4500), new Coffee("월남라떼", 6000),
-						new Coffee("카페모카", 5000), new Coffee("바닐라라떼", 5000) },
+				 new Coffee("아메리카노", 4000), new Coffee("카페라떼", 4500), new Coffee("월남라떼", 6000),
+						new Coffee("카페모카", 5000), new Coffee("바닐라라떼", 5000),
 
 				// 에이드
-				new Ade[] { new Ade("청포도에이드", 6500), new Ade("레몬에이드", 6500), new Ade("자몽에이드", 6500) },
+				 new Ade("청포도에이드", 6500), new Ade("레몬에이드", 6500), new Ade("자몽에이드", 6500),
 
 				// 스무디
-				new Smoothie[] { new Smoothie("플레인요거트스무디", 6000), new Smoothie("블루베리요거트스무디", 6500),
-						new Smoothie("딸기요거트스무디", 6500) },
+				 new Smoothie("플레인요거트스무디", 6000), new Smoothie("블루베리요거트스무디", 6500),
+						new Smoothie("딸기요거트스무디", 6500),
 
 				// 차
-				new Tea[] { new Tea("페퍼민트티", 5000), new Tea("레드넥타허브티", 5000), new Tea("히비스커스티", 5000),
+				new Tea("페퍼민트티", 5000), new Tea("레드넥타허브티", 5000), new Tea("히비스커스티", 5000),
 						new Tea("포틀랜드 블랙퍼스트홍차", 5000) }));
 
 		// #17. (17-1) 퀸카페종각
-		list.add(new Cafe("퀸카페종각점", "서울특별시 종로구 청계천로 35 1층 관정빌딩",
+		list.add(new Cafe("퀸카페종각점", "서울특별시 종로구 청계천로 35 1층 관정빌딩", new Menu[] {
 
 				// 커피
-				new Coffee[] { new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2500), new Coffee("카라멜마끼아또", 2900),
-						new Coffee("카페모카", 2900), new Coffee("바닐라라떼", 2900) },
+				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2500), new Coffee("카라멜마끼아또", 2900),
+						new Coffee("카페모카", 2900), new Coffee("바닐라라떼", 2900),
 
 				// 에이드
-				new Ade[] { new Ade("레몬에이드", 3500), new Ade("제주청귤에이드", 3500), new Ade("자몽에이드", 3500) },
+				new Ade("레몬에이드", 3500), new Ade("제주청귤에이드", 3500), new Ade("자몽에이드", 3500),
 
 				// 스무디
-				new Smoothie[] { new Smoothie("딸기요거트스무디", 3900), new Smoothie("블루베리요거트스무디", 3900),
-						new Smoothie("플레인요거트스무디", 3500), new Smoothie("패션후르츠스무디", 3900) },
+				new Smoothie("딸기요거트스무디", 3900), new Smoothie("블루베리요거트스무디", 3900),
+						new Smoothie("플레인요거트스무디", 3500), new Smoothie("패션후르츠스무디", 3900),
 
 				// 차
-				new Tea[] { new Tea("자스민티", 2500), new Tea("페퍼민트티", 2500), new Tea("복숭아아이스티", 2500) }));
+				new Tea("자스민티", 2500), new Tea("페퍼민트티", 2500), new Tea("복숭아아이스티", 2500)});
 
 	}
+
+	public static ArrayList<Menu> getTotalMenu() {
+		return totalMenu;
+	}
+	
+	
+
+	
 }

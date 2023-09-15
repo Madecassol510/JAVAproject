@@ -27,7 +27,7 @@ public class MenuPanel extends JPanel{
 		for(int i=0; i< MenuBt.size(); i++) {
 			add(MenuBt.get(i));
 			MenuBt.get(i).setPreferredSize(new Dimension(120, 80));
-			MenuBt.get(i).addActionListener(new ButtonEvent());
+			MenuBt.get(i).addActionListener(new MainMenuButtonEvent());
 		}		
 	}
 }

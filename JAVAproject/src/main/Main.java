@@ -1,5 +1,7 @@
 package main;
 
+import cafeVO.CafeDAO;
+import cafeVO.Menu;
 import mainMenu.FrameBase;
 import mainMenu.MainPanel;
 

@@ -1,10 +1,15 @@
 package cafeVO;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.TreeSet;
 
 public class CafeDAO {
 	private static ArrayList<Cafe> list;
-	private static ArrayList<Menu> totalMenu = new ArrayList<>();
+	
+	//==============================================================
+	private static HashSet<Menu> totalMenu = new HashSet<>();
+	
 	
 	
 	public CafeDAO() {
@@ -551,13 +556,12 @@ public class CafeDAO {
 				// 차
 				new Tea("자스민티", 2500), new Tea("페퍼민트티", 2500), new Tea("복숭아아이스티", 2500)}));
 
+		
+		
 	}
 
-	public static ArrayList<Menu> getTotalMenu() {
+	public static HashSet<Menu> getTotalMenu() {
 		return totalMenu;
 	}
-	
-	
 
-	
 }

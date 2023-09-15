@@ -1,5 +1,7 @@
 package cafeVO;
 
+import java.util.Objects;
+
 public class Menu {
 	String name;		// 메뉴이름
 	int price;			// 가격
@@ -18,6 +20,23 @@ public class Menu {
 
 	public int getPrice() {
 		return price;
+	}
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Menu) {
+			Menu menu = (Menu)obj;
+			
+			return this.getName().equals(menu.getName());
+		}
+		
+		return false;
 	}
 }
 

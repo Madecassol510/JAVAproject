@@ -10,6 +10,7 @@ public class Cafe {
 	
 	ArrayList<Menu> cafeMenu = new ArrayList<>();
 	
+	
 	// 생성자
 	public Cafe(String name,String adress, Menu[] menu ) {
 		this.name = name;

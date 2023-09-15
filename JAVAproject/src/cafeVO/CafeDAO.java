@@ -10,11 +10,17 @@ public class CafeDAO {
 	//==============================================================
 	private static HashSet<Menu> totalMenu = new HashSet<>();
 	
+	private static ArrayList<Coffee> coffeeCategory = new ArrayList<>();
+	private static ArrayList<Ade> adeCategory = new ArrayList<>();
+	private static ArrayList<Smoothie> smoothieCategory = new ArrayList<>();
+	private static ArrayList<Tea> teaCategory = new ArrayList<>();
 	
-	
-	public CafeDAO() {
-		if (list == null)
+	public CafeDAO(){
+		if (list == null) {
 			init();
+			
+		}
+			
 	}
 
 	private void init() {
@@ -560,8 +566,50 @@ public class CafeDAO {
 		
 	}
 
+	private void setCategory() {
+		for(Menu menu : totalMenu) {
+			if(menu instanceof Coffee) {
+				Coffee obj = (Coffee) menu;
+				coffeeCategory.add(obj);
+			}
+			else if(menu instanceof Ade) {
+				Ade obj = (Ade) menu;
+				adeCategory.add(obj);
+			}
+			else if(menu instanceof Smoothie) {
+				Smoothie obj = (Smoothie) menu;
+				smoothieCategory.add(obj);
+			}
+			else if(menu instanceof Tea) {
+				Tea obj = (Tea) menu;
+				teaCategory.add(obj);
+			}
+		}
+	}
+	
+	
 	public static HashSet<Menu> getTotalMenu() {
 		return totalMenu;
 	}
 
+	public static ArrayList<Cafe> getList() {
+		return list;
+	}
+
+	public static ArrayList<Coffee> getCoffeeCategory() {
+		return coffeeCategory;
+	}
+
+	public static ArrayList<Ade> getAdeCategory() {
+		return adeCategory;
+	}
+
+	public static ArrayList<Smoothie> getSmoothieCategory() {
+		return smoothieCategory;
+	}
+
+	public static ArrayList<Tea> getTeaCategory() {
+		return teaCategory;
+	}
+	
 }

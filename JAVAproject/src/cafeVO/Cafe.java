@@ -11,13 +11,13 @@ public class Cafe {
 	ArrayList<Menu> cafeMenu = new ArrayList<>();
 	
 	//카페의 커피리스트
-	ArrayList<Coffee> coffeeMenu = new ArrayList<>();
+	ArrayList<Menu> coffeeMenu = new ArrayList<>();
 	//카페의 에이드리스트
-	ArrayList<Ade> adeMenu = new ArrayList<>();
+	ArrayList<Menu> adeMenu = new ArrayList<>();
 	//카페의 스무디리스트
-	ArrayList<Smoothie> smoothieMenu = new ArrayList<>();
+	ArrayList<Menu> smoothieMenu = new ArrayList<>();
 	//카페의 차리스트
-	ArrayList<Tea> teaMenu = new ArrayList<>();
+	ArrayList<Menu> teaMenu = new ArrayList<>();
 	
 	// 생성자
 	public Cafe(String name,String adress, Menu[] menu ) {
@@ -82,19 +82,19 @@ public class Cafe {
 		this.cafeMenu = cafeMenu;
 	}
 
-	public ArrayList<Coffee> getCoffeeMenu() {
+	public ArrayList<Menu> getCoffeeMenu() {
 		return coffeeMenu;
 	}
 
-	public ArrayList<Ade> getAdeMenu() {
+	public ArrayList<Menu> getAdeMenu() {
 		return adeMenu;
 	}
 
-	public ArrayList<Smoothie> getSmoothieMenu() {
+	public ArrayList<Menu> getSmoothieMenu() {
 		return smoothieMenu;
 	}
 
-	public ArrayList<Tea> getTeaMenu() {
+	public ArrayList<Menu> getTeaMenu() {
 		return teaMenu;
 	}
 }

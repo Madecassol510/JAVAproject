@@ -21,7 +21,7 @@ public class ResultWindow extends JFrame{
 	int pageIndex;
 	
 	public ResultWindow(int pageIndex) {
-		
+			
 		this.pageIndex = pageIndex;
 		
 		Toolkit tk = Toolkit.getDefaultToolkit();
@@ -43,7 +43,7 @@ public class ResultWindow extends JFrame{
 		textPanel.setBackground(Color.green);
 		
 		add(textPanel);
-		add(new ResultPanel(), "South");
+		add(new ResultPanel(pageIndex), "South");
 	}
 }
 

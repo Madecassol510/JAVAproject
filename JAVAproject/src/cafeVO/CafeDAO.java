@@ -1,8 +1,10 @@
 package cafeVO;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.TreeSet;
+
+import javax.swing.ImageIcon;
 
 public class CafeDAO {
 	private static ArrayList<Cafe> list;
@@ -565,7 +567,7 @@ public class CafeDAO {
 		
 		
 	}
-
+	// 카테고리분류별 메뉴 초기화 메소드
 	private void setCategory() {
 		for(Menu menu : totalMenu) {
 			if(menu instanceof Coffee) {
@@ -586,6 +588,14 @@ public class CafeDAO {
 		}
 	}
 	
+	// Image 크기 변환 메소드
+	public static ImageIcon imageScaleChange (ImageIcon image, int xSize, int ySize) {
+		Image img = image.getImage();
+		Image chageImg = img.getScaledInstance(xSize, ySize, Image.SCALE_SMOOTH);
+		ImageIcon chageIcon = new ImageIcon(chageImg);
+		
+		return chageIcon;
+	}
 	
 	public static ArrayList<Cafe> getList() {
 		return list;

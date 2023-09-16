@@ -7,13 +7,17 @@ import javax.swing.JOptionPane;
 
 import cafeVO.CafeDAO;
 
+
 public class ResultCheck {
 	
-	static int pageNum; 
-	static int lastNum;
-	static int totalNum;
+	static ArrayList<String> resultList; // 결과 리스트
 	
-	static ArrayList<String> resultList;
+	static int pageCount;  // 페이지 수
+	static int resultCount; // 결과 값 개수
+	static int nowIndex; // 현재 위치
+	
+	static ResultWindow[] resultPage; // 페이지들 
+	
 	
 	public ResultCheck(String category, String text, JFrame searchWindow) {
 		// 검색값 검색
@@ -61,24 +65,26 @@ public class ResultCheck {
 		else {	
 			searchWindow.setVisible(false);
 			
-			if(resultList.size()/4>=1) { //3
-				pageNum = (resultList.size()/4)+1;
+			// 검색 개수와 현재 위치 초기화
+			resultCount = resultList.size();
+			nowIndex = 0;
+			
+			// 페이지 수 설정
+			if(resultList.size()%4>=1) {
+				pageCount = (resultList.size()/4)+1;
 			}
 			else
-				pageNum = resultList.size()/4;
-			
-			//lastNum = resultList.size() % 4; // 2		
-			totalNum = resultList.size();   // 10
+				pageCount = resultList.size()/4;
 			
 			
-			
-			ResultWindow[] rw = new ResultWindow[]{};
-			
-			for(int i=0; i<pageNum; i++) {
-				int nowPage = i+1;
-				//rw[i] = new ResultWindow(nowPage);	
+			// 페이지 수만큼 frame(해당 페이지의 페이지) 생성
+			resultPage = new ResultWindow[pageCount];   
+				
+			for(int i=0; i<pageCount; i++) {
+				resultPage[i] = new ResultWindow(i);
 			}
-			rw[0].setVisible(true);
+					
+			resultPage[1].setVisible(true);
 		}
 	
 	}

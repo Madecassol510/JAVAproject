@@ -18,7 +18,12 @@ public class ResultWindow extends JFrame{
 	JPanel textPanel;
 	JPanel ResultPanel;
 	
-	public ResultWindow(String result) {
+	int pageIndex;
+	
+	public ResultWindow(int pageIndex) {
+		
+		this.pageIndex = pageIndex;
+		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		setBounds((int)tk.getScreenSize().getWidth()/2 -150,
 				(int)tk.getScreenSize().getHeight()/2-155, 300,310);
@@ -38,13 +43,8 @@ public class ResultWindow extends JFrame{
 		textPanel.setBackground(Color.green);
 		
 		add(textPanel);
-		add(new ResultPanel(result), "South");
-		
-		setVisible(true);
+		add(new ResultPanel(), "South");
 	}
-	
-	
-	public static void N
 }
 
 

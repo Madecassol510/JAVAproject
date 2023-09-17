@@ -606,7 +606,7 @@ public class CafeDAO {
 					
 				}
 			}	
-		}	
+		}	6 
 		
 		
 		
@@ -629,6 +629,8 @@ public class CafeDAO {
 		
 		return chageIcon;
 	}
+	
+	
 	
 	public static ArrayList<Cafe> getList() {
 		return list;

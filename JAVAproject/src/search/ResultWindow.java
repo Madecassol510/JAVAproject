@@ -30,8 +30,6 @@ public class ResultWindow extends JFrame{
 
 		getContentPane().setBackground(Color.white);
 	
-		
-		
 		setLayout(new BorderLayout());
 		setBackground(Color.green);
 		

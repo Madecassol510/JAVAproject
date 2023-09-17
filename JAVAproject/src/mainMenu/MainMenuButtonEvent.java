@@ -3,7 +3,7 @@ package mainMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import search.InputPanel;
+import game.CheckMemberWindow;
 import search.SearchWindow;
 import selectMenu.SelectMenu;
 
@@ -15,7 +15,7 @@ public class MainMenuButtonEvent implements ActionListener{
 			
 		}	
 		else if(e.getActionCommand().equals("게임")) {
-			
+			new CheckMemberWindow();
 		}
 		
 		else if(e.getActionCommand().equals("종료")) {

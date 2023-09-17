@@ -2,7 +2,7 @@ package cafeVO;
 
 import java.util.Objects;
 
-public class Menu {
+public class Menu implements Comparable<Menu>{
 	String name;		// 메뉴이름
 	int price;			// 가격
 	
@@ -11,7 +11,7 @@ public class Menu {
 		this.price = price;
 		CafeDAO.getTotalMenu().add(this);
 	}
-
+	
 	
 	public String getName() {
 		return name;
@@ -21,8 +21,12 @@ public class Menu {
 	public int getPrice() {
 		return price;
 	}
-
-
+	
+	@Override
+	public int compareTo(Menu o) {
+		return 0;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(name);
@@ -34,8 +38,7 @@ public class Menu {
 			Menu menu = (Menu)obj;
 			
 			return this.getName().equals(menu.getName());
-		}
-		
+		}	
 		return false;
 	}
 }

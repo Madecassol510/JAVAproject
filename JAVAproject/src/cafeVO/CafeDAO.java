@@ -3,6 +3,10 @@ package cafeVO;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
 
@@ -218,7 +222,7 @@ public class CafeDAO {
 						new Tea("페퍼민트티", 2500), new Tea("얼그레이티", 2500) }));
 
 		// #4-2 메가MGC커피 종로점
-		list.add(new Cafe("메가MGC커피 종각역점", "서울특별시 종로구 종로 122 1층", new Menu[] {
+		list.add(new Cafe("메가MGC커피 종로역점", "서울특별시 종로구 종로 122 1층", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2900), // 커피
@@ -244,7 +248,7 @@ public class CafeDAO {
 						new Coffee("카라멜마끼아또", 4000), new Coffee("카페모카", 4000), new Coffee("바닐라라떼", 4200),
 
 				// 에이드
-				new Ade("레몬에이드", 4500), new Ade("복숭아에이드", 4500), new Ade("깔라만시에이드", 4300),
+				new Ade("레몬에이드", 4500), new Ade("복숭아 에이드", 4500), new Ade("깔라만시에이드", 4300),
 						new Ade("자몽에이드", 4500), new Ade("청포도에이드", 4500),
 
 				// 스무디
@@ -264,7 +268,7 @@ public class CafeDAO {
 						new Coffee("카페모카", 4000), new Coffee("바닐라라떼", 4200),
 
 				// 에이드
-				new Ade("레몬에이드", 4500), new Ade("복숭아에이드", 4500), new Ade("깔라만시에이드", 4300),
+				new Ade("레몬에이드", 4500), new Ade("복숭아 에이드", 4500), new Ade("깔라만시에이드", 4300),
 						new Ade("자몽에이드", 4500), new Ade("청포도에이드", 4500),
 
 				// 스무디
@@ -587,6 +591,35 @@ public class CafeDAO {
 			}
 		}
 	}
+	
+	// 테스트 메소드
+	public static ArrayList<Map.Entry<String, Integer>> aaa (String menuName) {
+ 		
+		TreeMap<String, Integer> cafeList = new  TreeMap<>();
+			
+		for(int i=0; i<list.size(); i++){
+			for(int y=0; y<list.get(i).getCafeMenu().size(); y++) {
+				if(list.get(i).getCafeMenu().get(y).getName().equals(menuName)){
+					
+					// menuName와 똑같은 메뉴를 가진 카페이름과 그메뉴의 가격을 cafeList에 추가
+					cafeList.put(list.get(i).getName(),list.get(i).getCafeMenu().get(y).getPrice());
+					
+				}
+			}	
+		}	
+		
+		
+		
+		
+		ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafeList.entrySet());
+		
+		
+		
+		return priceList;
+	}
+	
+	
+	
 	
 	// Image 크기 변환 메소드
 	public static ImageIcon imageScaleChange (ImageIcon image, int xSize, int ySize) {

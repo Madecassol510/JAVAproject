@@ -35,20 +35,16 @@ public class Cafe {
 	public void CafeMenu() {
 		for(Menu menu : cafeMenu) {
 			if(menu instanceof Coffee) {
-				Coffee coffee = (Coffee) menu;
-				coffeeMenu.add(coffee);
+				coffeeMenu.add(menu);
 			}
 			else if(menu instanceof Ade) {
-				Ade ade = (Ade) menu;
-				adeMenu.add(ade);
+				adeMenu.add(menu);
 			}
 			else if(menu instanceof Smoothie) {
-				Smoothie smoothie = (Smoothie) menu;
-				smoothieMenu.add(smoothie);
+				smoothieMenu.add(menu);
 			}
 			else if(menu instanceof Tea) {
-				Tea tea = (Tea) menu;
-				teaMenu.add(tea);
+				teaMenu.add(menu);
 			}
 		}
 	}

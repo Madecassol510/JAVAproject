@@ -8,8 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class LadderGame extends JPanel{
-	public LadderGame(ArrayList<String> gameMember) {
+public class PlayGameWindow extends JPanel{
+	public PlayGameWindow (ArrayList<String> gameMember) {
 		setSize(484,662);
 		
 		JPanel titlePanel = new JPanel();
@@ -21,7 +21,6 @@ public class LadderGame extends JPanel{
 		titlePanel.setBorder(new LineBorder(Color.black));
 		
 		add(titlePanel, "North");
-		add(new PlayLadderGame(gameMember));
-		
+		add(new PlayGame(gameMember));
 	}
 }

@@ -4,10 +4,11 @@ import cafeVO.CafeDAO;
 import cafeVO.Menu;
 import mainMenu.FrameBase;
 import mainMenu.MainPanel;
+import titleWindow.TitleWindow;
 
 public class Main {
 	public static void main(String[] args) {
-		FrameBase.getInstance(new MainPanel());
+		FrameBase.getInstance(new TitleWindow());
 		
 		
 		//db 확인

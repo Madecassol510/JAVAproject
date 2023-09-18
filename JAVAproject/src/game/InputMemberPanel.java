@@ -114,7 +114,7 @@ public class InputMemberPanel extends JPanel{
 					}
 					
 					if(gameMember.size() == memberCount) {
-						FrameBase.getInstance(new LadderGame(gameMember));
+						FrameBase.getInstance(new PlayGameWindow(gameMember));
 						inputMemberWindow.setVisible(false);
 					}
 					else {

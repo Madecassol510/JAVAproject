@@ -3,28 +3,58 @@ package game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import mainMenu.MainMenuButtonEvent;
+import mainMenu.FrameBase;
+import mainMenu.MainPanel;
 
 public class GameMenuPanel extends JPanel{
-	public GameMenuPanel() {
+	
+	ArrayList<String> gameMember;
+	
+	public GameMenuPanel(ArrayList<String> gameMember) {
+		
+		this.gameMember = gameMember;
+		
 		setPreferredSize(new Dimension(484,120));
 		setBackground(Color.RED);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
 		
-		ArrayList<JButton> MenuBt = new ArrayList<JButton>();
+		JButton restartBt = new JButton("다시하기");
+		JButton quitBt = new JButton("그만하기");
 		
-		MenuBt.add(new JButton("다시하기"));
-		MenuBt.add(new JButton("그만하기"));
+		quitBt.setPreferredSize(new Dimension(120, 80));
+		restartBt.setPreferredSize(new Dimension(120, 80));
 		
-		for(int i=0; i< MenuBt.size(); i++) {
-			add(MenuBt.get(i));
-			MenuBt.get(i).setPreferredSize(new Dimension(120, 80));
-			MenuBt.get(i).addActionListener(new MainMenuButtonEvent());
-		}		
-	}
+		add(restartBt);
+		add(quitBt);
+		
+		
+		
+		restartBt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FrameBase.getInstance(new PlayGameWindow(gameMember));
+			}
+		});
+		
+		
+		quitBt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FrameBase.getInstance(new MainPanel());		
+			}
+		});
+			
+		
+	
+	}		
 }
+

@@ -54,7 +54,7 @@ public class ResultPanel extends JPanel{
 				
 			}	
 		}
-		
+//=============================================================================================================
 		class Result extends JPanel {
 			// 결과 패널
 			public Result(String menuName) {
@@ -115,6 +115,15 @@ public class ResultPanel extends JPanel{
 				add(imagePanel,"West");
 				add(resultName,"Center");
 				add(buttonPanel,"East");
+				
+				
+				resultButton.addActionListener(new ActionListener() {		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+					
+						
+					}
+				});
 			}
 			
 			// 빈 결과 패널

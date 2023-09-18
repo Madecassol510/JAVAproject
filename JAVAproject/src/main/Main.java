@@ -11,10 +11,10 @@ public class Main {
 		
 		
 		//db 확인
-		CafeDAO D = new CafeDAO();
+		/*CafeDAO D = new CafeDAO();
 		
 		int a = CafeDAO.getList().get(0).getCoffeeMenu().get(0).getPrice();
 		System.out.println(a);
-		
+		*/
 	}
 }

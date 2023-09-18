@@ -33,7 +33,12 @@ public class Cafe {
 	
 	// 카페 메뉴 분류
 	public void CafeMenu() {
+		coffeeMenu.clear();
+		adeMenu.clear();
+		smoothieMenu.clear();
+		teaMenu.clear();
 		for(Menu menu : cafeMenu) {
+			
 			if(menu instanceof Coffee) {
 				coffeeMenu.add(menu);
 			}

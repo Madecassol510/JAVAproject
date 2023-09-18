@@ -146,7 +146,7 @@ public class CafeDAO {
 						new Tea("캐모마일티", 5100), new Tea("얼그레이티", 5100) }));
 
 		// 3-1 스타벅스 종각점 (3번내용 조사 x, 0번이랑 동일)
-		list.add(new Cafe("스타벅스종각점", "서울특별시 종로구 종로 64", new Menu[] {
+		list.add(new Cafe("스타벅스 종각점", "서울특별시 종로구 종로 64", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2000), new Coffee("카라멜마끼아또", 2000),
@@ -222,7 +222,7 @@ public class CafeDAO {
 						new Tea("페퍼민트티", 2500), new Tea("얼그레이티", 2500) }));
 
 		// #4-2 메가MGC커피 종로점
-		list.add(new Cafe("메가MGC커피 종로역점", "서울특별시 종로구 종로 122 1층", new Menu[] {
+		list.add(new Cafe("메가MGC커피 종로점", "서울특별시 종로구 종로 122 1층", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2900), // 커피
@@ -370,7 +370,7 @@ public class CafeDAO {
 		);
 
 		// #11. (11-1) 할리스 종각역점
-		list.add(new Cafe("할리스종각역점", "서울특별시 종로구 종로 60-1 1층 할리스 종각역점", new Menu[] {
+		list.add(new Cafe("할리스 종각역점", "서울특별시 종로구 종로 60-1 1층 할리스 종각역점", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000), new Coffee("카라멜마끼아또", 5900),
@@ -388,7 +388,7 @@ public class CafeDAO {
 						new Tea("페퍼민트티", 4500) }));
 		
 		// #11. (11-2) 할리스 청계천점
-		list.add(new Cafe("할리스종각역점", "서울특별시 종로구 청계천로 81", new Menu[] {
+		list.add(new Cafe("할리스 청계천점", "서울특별시 종로구 청계천로 81", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000), new Coffee("카라멜마끼아또", 5900),
@@ -407,7 +407,7 @@ public class CafeDAO {
 			
 
 		// #11. (11-3) 할리스 아카데미
-		list.add(new Cafe("할리스종각역점", "서울특별시 종로구 삼일대로 395 5층", new Menu[] {
+		list.add(new Cafe("할리스 아카데미", "서울특별시 종로구 삼일대로 395 5층", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 4500), new Coffee("카페라떼", 5000), new Coffee("카라멜마끼아또", 5900),
@@ -426,7 +426,7 @@ public class CafeDAO {
 				
 				
 		// #12. (12-1) 이디야 삼일빌딩점
-		list.add(new Cafe("이디야삼일빌딩점", "서울특별시 종로구 삼일대로15길 13", new Menu[] {
+		list.add(new Cafe("이디야 삼일빌딩점", "서울특별시 종로구 삼일대로15길 13", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 3200), new Coffee("카페라떼", 4200), new Coffee("카라멜마끼아또", 4500),
@@ -444,7 +444,7 @@ public class CafeDAO {
 						new Tea("페퍼민트티", 4500) }));
 		
 		// #12. (12-2) 이디야 종로삼일대로점
-		list.add(new Cafe("종로삼일대로점", "서울특별시 종로구 삼일대로 390-1", new Menu[] {
+		list.add(new Cafe("이디야 종로삼일대로점", "서울특별시 종로구 삼일대로 390-1", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 3200), new Coffee("카페라떼", 4200), new Coffee("카라멜마끼아또", 4500),
@@ -462,7 +462,7 @@ public class CafeDAO {
 						new Tea("페퍼민트티", 4500) }));
 		
 		// #13. (13-1) 카페스윗백년관점
-		list.add(new Cafe("카페스윗백년관점", "서울특별시 중구 남대문로10길 29 신한은행 백년관 1층", new Menu[] {
+		list.add(new Cafe("카페스윗 백년관점", "서울특별시 중구 남대문로10길 29 신한은행 백년관 1층", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2000), new Coffee("브라운슈가마끼아또", 2800),
@@ -480,7 +480,7 @@ public class CafeDAO {
 						new Tea("히비스커스티", 2500) }));
 
 		// #14. (14-1) 프롬하츠커피 청계종각점
-		list.add(new Cafe("프롬하츠커피청계종각점", "서울특별시 종로구 청계천로 53 1층 프롬하츠커피 청계종각점", new Menu[] {
+		list.add(new Cafe("프롬하츠커피 청계종각점", "서울특별시 종로구 청계천로 53 1층 프롬하츠커피 청계종각점", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 4800), new Coffee("카페라떼", 5300), new Coffee("카라멜마끼아또", 6000),
@@ -498,7 +498,7 @@ public class CafeDAO {
 						new Tea("하동녹차", 5000) }));
 
 		// #14. (14-2) 프롬하츠커피종로점
-		list.add(new Cafe("프롬하츠커피종로점", "서울특별시 종로구 삼일대로 396 1층", new Menu[] {
+		list.add(new Cafe("프롬하츠커피 종로점", "서울특별시 종로구 삼일대로 396 1층", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 4800), new Coffee("카페라떼", 5300), new Coffee("카라멜마끼아또", 6000),
@@ -534,7 +534,7 @@ public class CafeDAO {
 
 
 		// #16. (16-1) 커피디엔에이
-		list.add(new Cafe("커피디엔에이광화문점", "서울특별시 종로구 종로 33 1층", new Menu[] {
+		list.add(new Cafe("커피디엔에이 광화문점", "서울특별시 종로구 종로 33 1층", new Menu[] {
 
 				// 커피
 				 new Coffee("아메리카노", 4000), new Coffee("카페라떼", 4500), new Coffee("월남라떼", 6000),
@@ -552,7 +552,7 @@ public class CafeDAO {
 						new Tea("포틀랜드 블랙퍼스트홍차", 5000) }));
 
 		// #17. (17-1) 퀸카페종각
-		list.add(new Cafe("퀸카페종각점", "서울특별시 종로구 청계천로 35 1층 관정빌딩", new Menu[] {
+		list.add(new Cafe("퀸카페 종각점", "서울특별시 종로구 청계천로 35 1층 관정빌딩", new Menu[] {
 
 				// 커피
 				new Coffee("아메리카노", 1500), new Coffee("카페라떼", 2500), new Coffee("카라멜마끼아또", 2900),
@@ -571,6 +571,8 @@ public class CafeDAO {
 		
 		
 	}
+
+				
 	// 카테고리분류별 메뉴 초기화 메소드
 	private void setCategory() {
 		for(Menu menu : totalMenu) {
@@ -630,6 +632,17 @@ public class CafeDAO {
 		return chageIcon;
 	}
 	
+	public Cafe searchCafe(String name) { //카페 이름 찾기 메서드 정보창 호출때문에 임시로 만듬
+		for (int i = 0; i < list.size(); i++) {
+			
+			if (list.get(i).getName().equals(name)) {
+				
+				return list.get(i);
+				
+			}
+		}
+		return null;
+	}
 	
 	
 	public static ArrayList<Cafe> getList() {

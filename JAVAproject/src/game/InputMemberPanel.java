@@ -84,9 +84,7 @@ public class InputMemberPanel extends JPanel{
 				add(text);
 				add(inputName[index]);
 				setBorder(new LineBorder(Color.black));
-				text.setBorder(new LineBorder(Color.red));
-				
-				
+				text.setBorder(new LineBorder(Color.red));	
 			}		
 		}	
 	}

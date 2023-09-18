@@ -606,7 +606,7 @@ public class CafeDAO {
 					
 				}
 			}	
-		}	6 
+		}
 		
 		
 		

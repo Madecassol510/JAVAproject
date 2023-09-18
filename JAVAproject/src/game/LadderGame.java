@@ -19,7 +19,7 @@ public class LadderGame extends JPanel{
 		titlePanel.setBackground(Color.green);
 		
 		add(titlePanel, "North");
-		add(new PlayGame());
+		add(new PlayLadderGame());
 		add(new GameMenuPanel(),"South");
 	}
 }

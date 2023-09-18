@@ -14,13 +14,12 @@ public class GameMenuPanel extends JPanel{
 	public GameMenuPanel() {
 		setPreferredSize(new Dimension(484,120));
 		setBackground(Color.RED);
-		setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
+		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
 		
 		ArrayList<JButton> MenuBt = new ArrayList<JButton>();
 		
-		MenuBt.add(new JButton("검색"));
-		MenuBt.add(new JButton("게임"));
-		MenuBt.add(new JButton("종료"));
+		MenuBt.add(new JButton("다시하기"));
+		MenuBt.add(new JButton("그만하기"));
 		
 		for(int i=0; i< MenuBt.size(); i++) {
 			add(MenuBt.get(i));

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
 
 public class LadderGame extends JPanel{
 	public LadderGame(ArrayList<String> gameMember) {
@@ -17,9 +18,10 @@ public class LadderGame extends JPanel{
 		titlePanel.add(title);
 		titlePanel.setPreferredSize(new Dimension(484,100));
 		titlePanel.setBackground(Color.green);
+		titlePanel.setBorder(new LineBorder(Color.black));
 		
 		add(titlePanel, "North");
-		add(new PlayLadderGame());
-		add(new GameMenuPanel(),"South");
+		add(new PlayLadderGame(gameMember));
+		
 	}
 }

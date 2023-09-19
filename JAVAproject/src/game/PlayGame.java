@@ -3,6 +3,7 @@ package game;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,6 +30,7 @@ public class PlayGame extends JPanel{
 	public PlayGame(ArrayList<String> gameMember) {
 		
 		
+		
 		this.playerCount = gameMember.size();
 		this.oneMore = new int[2*(playerCount-1)];
 			
@@ -45,7 +47,7 @@ public class PlayGame extends JPanel{
 		}
 		
 		setPreferredSize(new Dimension(484,551));
-		setBackground(Color.blue);
+		
 		setLayout(new BorderLayout());
 		
 		add(new GameMenuPanel(gameMember),"South");
@@ -59,16 +61,23 @@ public class PlayGame extends JPanel{
 		
 		public PlayerPanel() {		
 			setLayout(new BorderLayout());
+			setBackground(Color.white);
+			
+			Font font = new Font("코트라 희망체", Font.PLAIN, 40); 
+			
 			turnText = new JLabel();
 			gameText = new JLabel();
+			
+			turnText.setFont(font);
+			gameText.setFont(font);
 			
 			turnText.setText(gameMember.get(playTurn) +"님의 차례입니다");
 			gameText.setText("숫자를 선택해주세요");
 			
 			turnText.setPreferredSize(new Dimension(484,80));
 			gameText.setPreferredSize(new Dimension(484,80));
-			turnText.setBorder(new LineBorder(Color.red));
-			gameText.setBorder(new LineBorder(Color.red));
+			//turnText.setBorder(new LineBorder(Color.red));
+			//gameText.setBorder(new LineBorder(Color.red));
 			
 			turnText.setHorizontalAlignment(JLabel.CENTER);
 			gameText.setHorizontalAlignment(JLabel.CENTER);
@@ -87,6 +96,7 @@ public class PlayGame extends JPanel{
 			
 			
 			public NumberTable() {
+				
 				setBackground(Color.green);
 				setPreferredSize(new Dimension(100,80));
 				setLayout(new GridLayout(5,playerCount+1));
@@ -106,10 +116,19 @@ public class PlayGame extends JPanel{
 				
 				public Number(Integer numIndex) {
 					
+					Font font = new Font("코트라 희망체", Font.PLAIN, 29-(3*(playerCount-2))); 
+					
+					// Font font = new Font("코트라 희망체", Font.PLAIN, 29); //2명
+					// Font font = new Font("코트라 희망체", Font.PLAIN, 26); //3명
+					// Font font = new Font("코트라 희망체", Font.PLAIN, 23); //4명
+					// Font font = new Font("코트라 희망체", Font.PLAIN, 20); //5명
+					
+					setFont(font);
+					
 					isClick = false;
 					isOneMore = false;
 					
-					setBorder(new LineBorder(Color.red));
+					setBorder(new LineBorder(Color.BLACK));
 					setText(numIndex.toString());
 					setHorizontalAlignment(JLabel.CENTER);
 					
@@ -167,6 +186,7 @@ public class PlayGame extends JPanel{
 		class bin extends JPanel{
 			public bin() {
 				setPreferredSize(new Dimension(50,0));
+				setBackground(Color.white);
 			}
 		}
 	}

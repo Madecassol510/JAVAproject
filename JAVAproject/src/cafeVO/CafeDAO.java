@@ -2,9 +2,9 @@ package cafeVO;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -594,31 +594,47 @@ public class CafeDAO {
 		}
 	}
 	
-	// 테스트 메소드
-	public static ArrayList<Map.Entry<String, Integer>> aaa (String menuName) {
- 		
-		TreeMap<String, Integer> cafeList = new  TreeMap<>();
-			
-		for(int i=0; i<list.size(); i++){
-			for(int y=0; y<list.get(i).getCafeMenu().size(); y++) {
-				if(list.get(i).getCafeMenu().get(y).getName().equals(menuName)){
-					
-					// menuName와 똑같은 메뉴를 가진 카페이름과 그메뉴의 가격을 cafeList에 추가
-					cafeList.put(list.get(i).getName(),list.get(i).getCafeMenu().get(y).getPrice());
-					
-				}
-			}	
-		}
-		
-		
-		
-		
-		ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafeList.entrySet());
-		
-		
-		
-		return priceList;
-	}
+	// 키워드 포함시 keyword 반환 메서드
+	   public static String findKeyword(String text, String keyword) {
+	      if (text.contains(keyword)) {
+	         return keyword;
+	      } else {
+	         return null;
+	      }
+	   }
+
+	   // 가격순 정렬 메서드
+	     public static ArrayList<Map.Entry<String, Integer>> sortMenu(String menuName, boolean ascending) {
+	           TreeMap<String, Integer> cafePrices = new TreeMap<>();
+	           System.out.println("list의 카페개수" + list.size());
+	           for (int i = 0; i < list.size(); i++) {
+	               Cafe cafe = list.get(i);
+	               
+	               for (int j = 0; j < cafe.getCafeMenu().size(); j++) {
+	                   Menu menu = cafe.getCafeMenu().get(j);
+	                   if (menuName.equals(findKeyword(menu.getName(), menuName))) {
+	                       int price = menu.getPrice();
+	                       Integer existingPrice = cafePrices.get(cafe.getName());
+	                       if (existingPrice == null || price < existingPrice) {
+	                           cafePrices.put(cafe.getName(), price);
+	                       }
+	                   }
+	               }
+	           }
+	           ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafePrices.entrySet());
+
+	           // 정렬 방향 설정
+	           Comparator<Map.Entry<String, Integer>> comparator = ascending ?
+	                   Map.Entry.comparingByValue() :
+	                   (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue());
+
+	           // 정렬
+	           Collections.sort(priceList, comparator);
+	           
+	           
+	           return priceList;
+	 }
+	
 	
 	
 	
@@ -632,7 +648,7 @@ public class CafeDAO {
 		return chageIcon;
 	}
 	
-	public Cafe searchCafe(String name) { //카페 이름 찾기 메서드 정보창 호출때문에 임시로 만듬
+	public static Cafe searchCafe(String name) { //카페 이름 찾기 메서드 정보창 호출때문에 임시로 만듬
 		for (int i = 0; i < list.size(); i++) {
 			
 			if (list.get(i).getName().equals(name)) {

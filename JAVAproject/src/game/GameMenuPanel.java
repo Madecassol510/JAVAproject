@@ -29,7 +29,7 @@ public class GameMenuPanel extends JPanel{
 		JButton restartBt = new JButton("RESTART");
 		JButton quitBt = new JButton("QUIT");
 		
-		Font font = new Font("Ramche", Font.PLAIN, 20);
+		Font font = new Font("코트라 희망체", Font.PLAIN, 30);
 		restartBt.setFont(font);
 		quitBt.setFont(font);
 		

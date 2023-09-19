@@ -3,6 +3,8 @@ package mainMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+
 import cafeInfo.CafeInfo;
 import cafeVO.CafeDAO;
 import game.CheckMemberWindow;
@@ -10,17 +12,31 @@ import search.SearchWindow;
 import selectMenu.SelectMenu;
 
 public class MainMenuButtonEvent implements ActionListener{
+	
+	String btName;
+	
+	public MainMenuButtonEvent() {
+		btName = "Nothing";
+	}
+	
+	public MainMenuButtonEvent(String btName) {
+		this.btName = btName;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("검색")) {
-			SearchWindow sw = new SearchWindow();
+		if(btName.equals("검색")) {
+			// 검색버튼
+			new SearchWindow();
 			
 		}	
-		else if(e.getActionCommand().equals("게임")) {
+		else if(btName.equals("게임")) {
+			// 게임버튼
 			new CheckMemberWindow();
 		}
 		
-		else if(e.getActionCommand().equals("종료")) {
+		else if(btName.equals("종료")) {
+			// 종료버튼
 			//System.exit(0);
 			CafeDAO cd = new CafeDAO();
 			FrameBase.getInstance(new CafeInfo(cd.searchCafe("퀸카페 종각점")));

@@ -18,4 +18,12 @@ public class MainPanel extends JPanel{
 		add(new CategoryPanel());
 		add(new MenuPanel(),"South");
 	}
+	
+	
+	public void paintComponent(Graphics g) {
+		Dimension d = getSize();
+		ImageIcon image = CafeDAO.imageScaleChange(
+				new ImageIcon("61.jpg"), d.width, d.height);
+		g.drawImage(image.getImage(),0,0,d.width,d.height,null);
+	}
 }

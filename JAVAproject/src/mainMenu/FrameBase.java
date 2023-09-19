@@ -27,12 +27,6 @@ public class FrameBase extends JFrame{
 		setVisible(true);	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-//		JLabel background = new JLabel(CafeDAO.imageScaleChange(
-//				new ImageIcon("61.jpg"), 500, 700));
-//		
-//		add(background);
-//		
-		
 	}
 	
 	public static void getInstance(JPanel e) {
@@ -45,12 +39,4 @@ public class FrameBase extends JFrame{
 		instance.revalidate();
 		instance.repaint();
 	}
-	
-	public void paintComponent(Graphics g) {
-		Dimension d = getSize();
-		ImageIcon image = CafeDAO.imageScaleChange(
-				new ImageIcon("61.jpg"), d.width, d.height);
-		g.drawImage(image.getImage(),0,0,d.width,d.height,null);
-	}
-	
 }

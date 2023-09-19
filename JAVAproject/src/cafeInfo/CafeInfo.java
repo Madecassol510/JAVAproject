@@ -2,35 +2,38 @@ package cafeInfo;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Panel;
-import java.awt.TextArea;
+import java.awt.Insets;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-import javax.swing.BoxLayout;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.JTextPane;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import cafeVO.Cafe;
 import cafeVO.CafeDAO;
-
-import cafeVO.Menu;
-import mainMenu.MenuPanel;
 
 
 
@@ -41,21 +44,44 @@ public class CafeInfo extends JPanel {
 	
 	public CafeInfo(Cafe c) { //Cafe형 객체
 		CafeDAO cd = new CafeDAO(); //cafe db 객체 선언
-	
+		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		infoFrame.setBounds((int)tk.getScreenSize().getWidth()/2 -250,
 				(int)tk.getScreenSize().getHeight()/2-300, 500,700);
 		Dimension dim = new Dimension(500, 700);
 		infoFrame.setSize(dim);
-		infoFrame.setLayout(new BorderLayout());
-
+		
+        
+		//프레임의 배경화면 설정
+		Container contentPane = infoFrame.getContentPane();
+		ImageIcon background1 = new ImageIcon("JAVAproject/src/soldesk_pro01_img/infobackground.jpg");
+		Image originalImage = background1.getImage();
+		
+		Image resizedImage = originalImage.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
+		ImageIcon resizedIcon = new ImageIcon(resizedImage);
+		
+		
+		JLabel backgroundLabel = new JLabel();
+        backgroundLabel.setBounds(0, 0, infoFrame.getWidth(), infoFrame.getHeight());
+		contentPane.add(backgroundLabel);
+		
+		//라벨 덧씌우기
+		JLabel backgroundLabel2 = new JLabel(resizedIcon);
+		backgroundLabel2.setBounds(0, 0, backgroundLabel.getWidth(), backgroundLabel.getHeight());
+		backgroundLabel2.setLayout(new BorderLayout());
+		backgroundLabel2.setOpaque(false);
+		backgroundLabel.add(backgroundLabel2);
+		
+		
+		
+		
 		// JPanel
 
 		// 이미지 부분
 		JPanel imgpanel = new JPanel();
 		final int cafeNum = 1;
 		int cafeFlag = -1;
-
+		imgpanel.setOpaque(false);
 		
 		CafeUrl cafeUrlInstance = new CafeUrl();
 
@@ -174,9 +200,10 @@ public class CafeInfo extends JPanel {
 			ImageIcon cafeIcon = new ImageIcon(cafeUrlInstance.getCafeUrls()[cafeFlag]);
 			//Image scaledcafeIcon = cafeIcon.getImage().getScaledInstance(120, 80, Image.SCALE_SMOOTH);
 			//cafeImg[cafeFlag] = new ImageIcon(scaledcafeIcon);
-			cafeImg[cafeFlag]=cd.imageScaleChange(cafeIcon,120,80);
+			cafeImg[cafeFlag]=cd.imageScaleChange(cafeIcon,150,100);
 			JLabel img = new JLabel(cafeImg[cafeFlag]);
 			imgpanel.add(img);
+			imgpanel.setAlignmentX(1.0f);
 		} 
 		else {
 			JLabel noImageLabel = new JLabel("이미지 없음");
@@ -185,67 +212,145 @@ public class CafeInfo extends JPanel {
 	
 		
 
-		// 카페 관련 상호&주소 패널
-		JPanel cafeNameAdPanel = new JPanel();
-		cafeNameAdPanel.setLayout(new BoxLayout(cafeNameAdPanel, BoxLayout.Y_AXIS));
-
-		// 상호명 패널
-		JPanel namepanel = new JPanel();
-		JLabel namelabel = new JLabel("상호명: " + c.getName() + "\n");
-		namepanel.add(namelabel);
-
-		namepanel.setAlignmentX(1.0f);
-		namepanel.setVisible(true);
-
-		// 주소 패널
-		JPanel adresspanel = new JPanel();
-		adresspanel.add(new JLabel("주	 소: " + c.getAdress()));
-		adresspanel.setVisible(true);
-
-		// 상호 주소 패널을 정보 패널에 추가
-		cafeNameAdPanel.add(namepanel);
-		cafeNameAdPanel.add(adresspanel);
-		cafeNameAdPanel.setVisible(true);
-
+	
+		JTextPane inform = new JTextPane();
+		String text = "\n카페 제목: " + c.getName() + "\n주 소 : " +  c.getAdress();
+		//inform.setPreferredSize(new Dimension(400,90));//(200,280)
+		inform.setPreferredSize(new Dimension(270, 90));
+		inform.setEditable(false);		
+		inform.setText(text);
+		inform.setOpaque(false); //투명하게 하는 메서드
+		StyledDocument doc = inform.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		
 		// 이미지 패널과 상호주소 패널을 합친 카페 정보 패널
 		JPanel cafeInfoPanel = new JPanel();
-		cafeInfoPanel.setLayout(new FlowLayout());
+		cafeInfoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
+		
 		cafeInfoPanel.add(imgpanel);
-		cafeInfoPanel.add(cafeNameAdPanel);
+		cafeInfoPanel.add(inform);
 		cafeInfoPanel.setVisible(true);
+		Dimension dimInfo = new Dimension(400, 150);
+		cafeInfoPanel.setPreferredSize(dimInfo);
+		cafeInfoPanel.setOpaque(false);
+		
+		
 
 		// CafeInfoPanel cafeInfoPanel = new CafeInfoPanel(c);
 		// cafeInfoPanel.setVisible(true);
-		infoFrame.add(cafeInfoPanel, BorderLayout.NORTH);
+		backgroundLabel2.add(cafeInfoPanel, BorderLayout.NORTH);
 
-		infoFrame.add(new InfoPanel(), BorderLayout.SOUTH);// 정보창 버튼 패널 추가
-		infoFrame.setVisible(true);
+		backgroundLabel2.add(new InfoPanel(), BorderLayout.SOUTH);// 정보창 버튼 패널 추가
+		
 		
 		//카페 메뉴
-		JPanel menuOut = new JPanel();
-		infoFrame.add(menuOut, BorderLayout.CENTER);
-	
+		JPanel menuPanel = new JPanel();
+		menuPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 30));
+		menuPanel.setOpaque(false);
+		
+		backgroundLabel2.add(menuPanel, BorderLayout.CENTER);
+		
+		ImagePanel menuOut = new ImagePanel("JAVAproject/src/soldesk_pro01_img/menubackground.jpg");
+		
+		menuOut.setOpaque(false);
+		menuPanel.add(menuOut);
+		
+		
 		JPanel menu = new JPanel();
-		menu.setLayout(new GridLayout(2,4));
-		menu.setBackground(Color.green);
-		Dimension dimMenu = new Dimension(400, 400);
+		menu.setOpaque(false);
+		menu.setLayout(new GridBagLayout());
+		GridBagConstraints cs = new GridBagConstraints();
+		cs.fill = GridBagConstraints.BOTH;
+		
+		Dimension dimMenu = new Dimension(400, 300);
 		menu.setPreferredSize(dimMenu);
 		menu.setVisible(true);
-		menu.setFont(new Font(Font.DIALOG, Font.PLAIN, 20));
 		
 		menuOut.add(menu);
 		c.CafeMenu();
 		
 		
-		JTextArea CoffeeMenu = new JTextArea(" 커피");
-		JTextArea AdeMenu = new JTextArea(" 에이드");
-		JTextArea SmoothieMenu = new JTextArea(" 스무디");
-		JTextArea TeaMenu = new JTextArea(" 차");
-		JTextArea CoffeePrice = new JTextArea(" 가격");
-		JTextArea AdePrice = new JTextArea(" 가격");
-		JTextArea SmoothiePrice = new JTextArea(" 가격");
-		JTextArea TeaPrice = new JTextArea(" 가격");
+		JTextArea CoffeeMenu = new JTextArea(" 커피\n");
+		CoffeeMenu.setSize(125,150);
+		cs.gridx =0;
+		cs.gridy =75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(CoffeeMenu, cs);
 		
+		JTextArea CoffeePrice = new JTextArea(" \n");
+		CoffeePrice.setSize(75,150);
+		cs.gridx =125;
+		cs.gridy =75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(CoffeePrice, cs);
+		
+		JTextArea AdeMenu = new JTextArea(" 에이드\n");
+		AdeMenu.setSize(125,150);
+		cs.gridx =200;
+		cs.gridy =75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(AdeMenu, cs);
+		
+		JTextArea AdePrice = new JTextArea("\n");
+		AdePrice.setSize(75,150);
+		cs.gridx =325;
+		cs.gridy =75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(AdePrice, cs);
+		
+		JTextArea SmoothieMenu = new JTextArea(" 스무디\n");
+		SmoothieMenu.setSize(125,150);
+		cs.gridx =0;
+		cs.gridy =-75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(SmoothieMenu, cs);
+		
+		JTextArea SmoothiePrice = new JTextArea(" \n");
+		SmoothiePrice.setSize(75,150);
+		cs.gridx =125;
+		cs.gridy =-75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(SmoothiePrice, cs);
+		
+		JTextArea TeaMenu = new JTextArea(" 차\n");
+		TeaMenu.setSize(125,150);
+		cs.gridx =200;
+		cs.gridy =-75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(TeaMenu, cs);
+		
+		JTextArea TeaPrice = new JTextArea(" \n");
+		TeaPrice.setSize(75,150);
+		cs.gridx =325;
+		cs.gridy =-75;
+		cs.gridwidth =1;
+		cs.gridheight =1;
+		cs.weightx = 1.0;
+		cs.weighty = 1.0;
+		menu.add(TeaPrice, cs);
 		
 		for(int i =0; i< c.getCoffeeMenu().size(); i++) {
 			String add = CoffeeMenu.getText();
@@ -288,10 +393,6 @@ public class CafeInfo extends JPanel {
 			TeaPrice.setText(add);
 		}
 		
-		Border customBorder = new CustomBorder(Color.BLACK, 1, false, false, false, true);
-		CoffeePrice.setBorder(customBorder);
-		SmoothiePrice.setBorder(customBorder);
-		
 		
 		TASettings(CoffeeMenu);
 		TASettings(CoffeePrice);
@@ -302,15 +403,9 @@ public class CafeInfo extends JPanel {
 		TASettings(TeaMenu);
 		TASettings(TeaPrice);
         
-        menu.add(CoffeeMenu);
-        menu.add(CoffeePrice);
-        menu.add(AdeMenu);
-        menu.add(AdePrice);
-        menu.add(SmoothieMenu);
-        menu.add(SmoothiePrice);
-        menu.add(TeaMenu);
-        menu.add(TeaPrice);
-	}    // 카페메뉴 끝
+     // 카페메뉴 끝
+        infoFrame.setVisible(true); //프레임 on
+	}    
 	
 		
 	
@@ -318,11 +413,32 @@ public class CafeInfo extends JPanel {
 
 	private static void TASettings(JTextArea textArea) { //textarea 전체에 디자인하는 메서드
 		textArea.setEditable(false);
-		
+		textArea.setOpaque(false);
+		Font font = new Font("카페24 슈퍼매직 OTF Regular", 13, 10); //폰트 적용 x
+		textArea.setFont(font);
 	}
 	class CustomBorder extends MatteBorder {
 		public CustomBorder(Color color, int thickness, boolean top, boolean left, boolean bottom, boolean right) {
         super(top ? thickness : 0, left ? thickness : 0, bottom ? thickness : 0, right ? thickness : 0, color);
 			}
 		}
+	
+	class ImagePanel extends JPanel {
+	    private BufferedImage backgroundImage;
+
+	    public ImagePanel(String imagePath) {
+	        try {
+	            backgroundImage = ImageIO.read(new File(imagePath));
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    @Override
+	    protected void paintComponent(Graphics g) {
+	        super.paintComponent(g);
+	        if (backgroundImage != null) {
+	            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+	        }
+	    }
+	} 
 }

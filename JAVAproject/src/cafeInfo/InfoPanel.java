@@ -16,8 +16,8 @@ public class InfoPanel extends JPanel {
 	public InfoPanel() {
 		setPreferredSize(new Dimension(484, 120));
 		setBackground(Color.green);
-		setLayout(new FlowLayout(FlowLayout.CENTER, 35, 20));
-
+		setLayout(new FlowLayout(FlowLayout.CENTER, 35, 0));
+		setOpaque(false);
 		ArrayList<JButton> menuButtons = new ArrayList<JButton>();
 
 		/*

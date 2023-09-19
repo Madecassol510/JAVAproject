@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -25,16 +26,18 @@ public class GameMenuPanel extends JPanel{
 		setBackground(Color.RED);
 		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 20));
 		
-		JButton restartBt = new JButton("다시하기");
-		JButton quitBt = new JButton("그만하기");
+		JButton restartBt = new JButton("RESTART");
+		JButton quitBt = new JButton("QUIT");
 		
-		quitBt.setPreferredSize(new Dimension(120, 80));
-		restartBt.setPreferredSize(new Dimension(120, 80));
+		Font font = new Font("Ramche", Font.PLAIN, 20);
+		restartBt.setFont(font);
+		quitBt.setFont(font);
+		
+		quitBt.setPreferredSize(new Dimension(130, 70));
+		restartBt.setPreferredSize(new Dimension(130, 70));
 		
 		add(restartBt);
 		add(quitBt);
-		
-		
 		
 		restartBt.addActionListener(new ActionListener() {
 			

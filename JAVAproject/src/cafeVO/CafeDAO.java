@@ -603,37 +603,43 @@ public class CafeDAO {
 	      }
 	   }
 
-	   // 가격순 정렬 메서드
-	     public static ArrayList<Map.Entry<String, Integer>> sortMenu(String menuName, boolean ascending) {
-	           TreeMap<String, Integer> cafePrices = new TreeMap<>();
-	           System.out.println("list의 카페개수" + list.size());
-	           for (int i = 0; i < list.size(); i++) {
-	               Cafe cafe = list.get(i);
+	// 가격순 정렬 메서드
+	      public static ArrayList<Map.Entry<String, Integer>> sortMenu (String menuName) {
+	          
+	            TreeMap<String, Integer> cafeList = new  TreeMap<>();
 	               
-	               for (int j = 0; j < cafe.getCafeMenu().size(); j++) {
-	                   Menu menu = cafe.getCafeMenu().get(j);
-	                   if (menuName.equals(findKeyword(menu.getName(), menuName))) {
-	                       int price = menu.getPrice();
-	                       Integer existingPrice = cafePrices.get(cafe.getName());
-	                       if (existingPrice == null || price < existingPrice) {
-	                           cafePrices.put(cafe.getName(), price);
-	                       }
-	                   }
+	            for(int i=0; i<list.size(); i++){
+	               for(int y=0; y<list.get(i).getCafeMenu().size(); y++) {
+	                  if(list.get(i).getCafeMenu().get(y).getName().equals(menuName)){
+	                     
+	                  // menuName와 똑같은 메뉴를 가진 카페이름과 그메뉴의 가격을 cafeList에 추가
+	                  cafeList.put(list.get(i).getName(), list.get(i).getCafeMenu().get(y).getPrice());
+
 	               }
-	           }
-	           ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafePrices.entrySet());
+	            }
+	         }
 
-	           // 정렬 방향 설정
-	           Comparator<Map.Entry<String, Integer>> comparator = ascending ?
-	                   Map.Entry.comparingByValue() :
-	                   (entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue());
+	         ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafeList.entrySet());
+	         Collections.sort(priceList, Map.Entry.comparingByValue());
+	         return priceList;
+	      }
+	      
+	   // 가격 내림차순 정렬 메서드
+	      public static ArrayList<Map.Entry<String, Integer>> sortMenuDesc(String menuName) {
+	          TreeMap<String, Integer> cafeList = new TreeMap<>(Collections.reverseOrder());
+	              
+	          for(int i=0; i<list.size(); i++) {
+	              for(int y=0; y<list.get(i).getCafeMenu().size(); y++) {
+	                  if(list.get(i).getCafeMenu().get(y).getName().equals(menuName)){
+	                      cafeList.put(list.get(i).getName(), list.get(i).getCafeMenu().get(y).getPrice());
+	                  }
+	              }
+	          }
 
-	           // 정렬
-	           Collections.sort(priceList, comparator);
-	           
-	           
-	           return priceList;
-	 }
+	          ArrayList<Map.Entry<String, Integer>> priceList = new ArrayList<>(cafeList.entrySet());
+	          Collections.sort(priceList, Map.Entry.<String, Integer>comparingByValue().reversed());
+	          return priceList;
+	      }
 	
 	
 	

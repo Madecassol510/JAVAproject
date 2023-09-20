@@ -3,31 +3,24 @@ package selectMenu.topmenuhandler;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import mainMenu.FrameBase;
 import selectMenu.SelectMenu;
 
 public class ChoiceMenuHandler implements ItemListener {
+    private String category;
+    private SelectMenu parentPanel;  // 참조 유지
 
-	@Override
-	public void itemStateChanged(ItemEvent e) {
+    public ChoiceMenuHandler(String category, SelectMenu parentPanel) {
+        this.category = category;
+        this.parentPanel = parentPanel;  // 부모 패널을 참조
+    }
 
-		String selected = (String) e.getItem();
-
-		switch (selected) {
-		case "커피":
-			FrameBase.getInstance(new SelectMenu("Coffee"));
-			break;
-		case "에이드":
-			FrameBase.getInstance(new SelectMenu("Ade"));
-			break;
-		case "스무디":
-			FrameBase.getInstance(new SelectMenu("Smoothie"));
-			break;
-		case "차":
-			FrameBase.getInstance(new SelectMenu("Tea"));
-			break;
-		default:
-			break;
-		}
-	}
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        System.out.println((String)e.getItem());  // 로그 출력
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            String selectedItem = e.getItem().toString();
+            parentPanel.resetCurrentPage();  // 페이지 초기화
+            parentPanel.displayMenuItems(selectedItem);  // 해당 메뉴 아이템들을 화면에 표시
+        }
+    }
 }

@@ -58,7 +58,7 @@ public class CafeInfo extends JPanel {
         
 		//프레임의 배경화면 설정
 		Container contentPane = infoFrame.getContentPane();
-		ImageIcon imageicon = new ImageIcon("JAVAproject/src/soldesk_pro01_img/infobackground.jpg");
+		ImageIcon imageicon = new ImageIcon("src/soldesk_pro01_img/infobackground.jpg");
 		
 		
 		ImageIcon resizedImageIcon = new ImageIcon(ImgTransSetting(imageicon, 500, 700, 0.1f));
@@ -263,7 +263,7 @@ public class CafeInfo extends JPanel {
 		
 		backgroundLabel2.add(menuPanel, BorderLayout.CENTER);
 		
-		ImagePanel menuOut = new ImagePanel("JAVAproject/src/soldesk_pro01_img/menubackground.jpg");
+		ImagePanel menuOut = new ImagePanel("src/soldesk_pro01_img/menubackground.jpg");
 		menuOut.setOpaque(false);
 		menuPanel.add(menuOut);
 		

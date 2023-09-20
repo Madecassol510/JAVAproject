@@ -49,10 +49,5 @@ public class MenuPanel extends JLabel{
 			
 	}
 	
-//	public void paintComponent(Graphics g) {
-//		Dimension d = getSize();
-//		ImageIcon image = CafeDAO.imageScaleChange(
-//				new ImageIcon("7.jpg"), d.width, 662);
-//		g.drawImage(image.getImage(),0,0,d.width,662,null);
-//	}
+
 }

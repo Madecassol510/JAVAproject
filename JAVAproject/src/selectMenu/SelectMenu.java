@@ -2,19 +2,26 @@ package selectMenu;
 
 import java.awt.Choice;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import cafeInfo.CafeInfo;
 import cafeVO.CafeDAO;
 import mainMenu.FrameBase;
+import mainMenu.MenuPanel;
 import selectMenu.topmenuhandler.ChoiceMenuHandler;
 import selectMenu.topmenuhandler.SortingHandler;
 
@@ -26,23 +33,83 @@ public class SelectMenu extends JPanel {
     private JButton nextButton;
     private JButton prevButton;
     private String currentMenuName;
+    private MenuPanel menuPanel;
 
     public SelectMenu(String category) {
-        setBackground(new Color(255, 255, 255));
-        setLayout(null);
-        setSize(500, 700);
-        CafeDAO d1 = new CafeDAO();
-
-        Choice choiceMenu = createChoiceMenu(category, d1);
-        add(choiceMenu);
-        Choice sortingPrice = createSortingChoice(category, d1);
-        add(sortingPrice);
-
-        createNavigationButtons();
-
-        if (choiceMenu.getItemCount() > 0) {
+        initUI(category);
+        Choice choiceMenu = findChoiceMenu();
+        if (choiceMenu != null && choiceMenu.getItemCount() > 0) {
             displayMenuItems(choiceMenu.getItem(0));
         }
+    }
+
+    public SelectMenu(String category, String menuName) {
+        initUI(category);
+        if (menuName != null && !menuName.isEmpty()) {
+            displayMenuItems(menuName);
+        }
+    }
+    
+    public void paintComponent(Graphics g) {
+		Dimension d = getSize();
+		ImageIcon image = CafeDAO.imageScaleChange(
+				new ImageIcon("61.jpg"), d.width, d.height);
+		g.drawImage(image.getImage(),0,0,d.width,d.height,null);
+	}
+
+    private void initUI(String category) {
+        setBackground(new Color(255, 255, 255));
+        setLayout(null);
+        setSize(484,662);
+        CafeDAO d1 = new CafeDAO();
+
+        // Choice 메뉴들을 한 줄에 나란히 배치
+        int choiceWidth = 150;  // 가정: choiceMenu와 sortingPrice의 너비는 각각 150
+        int choiceHeight = 30;  // 가정: choiceMenu와 sortingPrice의 높이는 30
+        int choiceSpacing = 20;  // 두 Choice 사이의 간격
+        int totalChoiceWidth = (2 * choiceWidth) + choiceSpacing;  // 두 Choice의 총 너비
+        
+        int choiceY = 30;  // y 좌표 값을 조절하여 choiceMenu와 sortingPrice 위치를 위로 옮김
+
+        Choice choiceMenu = createChoiceMenu(category, d1);
+        choiceMenu.setBounds((484 - totalChoiceWidth) / 2, choiceY, choiceWidth, choiceHeight);
+        add(choiceMenu);
+
+        Choice sortingPrice = createSortingChoice(category, d1);
+        sortingPrice.setBounds(choiceMenu.getX() + choiceWidth + choiceSpacing, choiceY, choiceWidth, choiceHeight);
+        add(sortingPrice);
+        
+        // MenuPanel 객체 생성 및 설정
+        menuPanel = new MenuPanel();
+        menuPanel.setBounds(0, 542, 484, 120);
+        add(menuPanel);
+        
+        createNavigationButtons();
+
+        // '이전' 및 '다음' 버튼을 중앙에 배치
+        int menuButtonWidth = 400; // 'createButtonForChoice'에서 생성된 버튼의 너비
+        int buttonWidth = 150;    // '이전' 및 '다음' 버튼의 너비
+        int buttonHeight = 30;    // '이전' 및 '다음' 버튼의 높이
+        int buttonSpacing = (menuButtonWidth - 2 * buttonWidth) / 2; // '이전'과 '다음' 버튼 사이의 간격
+
+        // '이전' 버튼을 메뉴 버튼의 왼쪽 끝에 배치
+        prevButton.setBounds(50, 510, buttonWidth, buttonHeight);
+
+        // '다음' 버튼을 메뉴 버튼의 오른쪽 끝에 배치
+        nextButton.setBounds(284, 510, buttonWidth, buttonHeight);
+        
+        add(prevButton);
+        add(nextButton);
+        // 나머지 2개의 버튼도 추가하세요.
+    }
+
+    private Choice findChoiceMenu() {
+        for (Component component : getComponents()) {
+            if (component instanceof Choice) {
+                return (Choice) component;
+            }
+        }
+        return null;
     }
     
     /**
@@ -144,14 +211,31 @@ public class SelectMenu extends JPanel {
      * @param button 추가할 JButton.
      */
     public void addButtonToPanel(JButton button) {
-        int yOffset = (displayedButtons.isEmpty()) ? 150
-            : displayedButtons.get(displayedButtons.size() - 1).getY() + 110;
-        button.setBounds(50, yOffset, 400, 100);
+        int yOffset = (displayedButtons.isEmpty()) ? 70 : displayedButtons.get(displayedButtons.size() - 1).getY() + 110;
+        button.setBounds(50, yOffset, 384, 100);
         this.add(button);
         displayedButtons.add(button);
 
         this.revalidate();
         this.repaint();
+    }
+    
+    // 키값(가게명)으로 해당 int value(가게가격) 반환 메서드
+    private int getMenuPrice(String choice) {
+    	for(int i=0; i<currentMenuList.size(); i++) {
+    		if(currentMenuList.get(i).getKey().equals(choice)) {
+    			return currentMenuList.get(i).getValue();
+    		} 
+    	} return 0;
+    }
+    // 키값(가게명)으로 해당 이미지 반환 메서드
+    private ImageIcon getCafeIcon(String choice) {
+    	CafeDAO d1 = new CafeDAO();
+    	for(int i=0; i<d1.getList().size(); i++) {
+    		if(d1.getList().get(i).getName().equals(choice)) {
+    			return d1.getList().get(i).getImage();
+    		}
+    	} return null;
     }
 
     /**
@@ -161,19 +245,33 @@ public class SelectMenu extends JPanel {
      */
     private JButton createButtonForChoice(String choice) {
         JButton button = new JButton(choice);
-        button.setPreferredSize(new Dimension(400, 100));
+        
+     // 후 이미지 경로 로직 추가 아마 로직.equlas choice 이렇게 해야될드
+     // 이미지 로드 및 크기 조절
+        ImageIcon originalIcon = getCafeIcon(choice);
+        Image scaledImage = originalIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        
+        
+        // 버튼에 이미지 및 텍스트 설정
+        button.setIcon(scaledIcon);
+        button.setText("<html>가게명 : " + choice + "<br>가격 : " +  getMenuPrice(choice)+ "</html>");
+        button.setHorizontalTextPosition(SwingConstants.RIGHT);
+        button.setHorizontalAlignment(SwingConstants.LEFT);
+
+        // 나머지 UI 설정들
+        button.setPreferredSize(new Dimension(384, 100));
         button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         button.setBackground(new Color(220, 220, 220));
         button.setForeground(Color.BLACK);
         
-     // ActionListener 추가
+        // ActionListener 추가
         button.addActionListener(e -> {
-        	CafeDAO cd = new CafeDAO();
+            CafeDAO cd = new CafeDAO();
             FrameBase.getInstance2(new CafeInfo(cd.searchCafe(choice.split(" : ")[0])));
+        	System.out.println(choice.split(" : ")[0]);
         });
-        //choice.split(" : ")[0]
-     // ':' 문자를 기준으로 분리하여 메뉴 이름만 출력
-        
+
         button.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -209,7 +307,7 @@ public class SelectMenu extends JPanel {
         int start = pageIndex * ITEMS_PER_PAGE;
         for (int i = start; i < start + ITEMS_PER_PAGE && i < currentMenuList.size(); i++) {
             Map.Entry<String, Integer> entry = currentMenuList.get(i);
-            JButton button = createButtonForChoice(entry.getKey() + " : " + entry.getValue());
+            JButton button = createButtonForChoice(entry.getKey());
             addButtonToPanel(button);
         }
         updateNavigationButtons();  // 버튼 상태 갱신

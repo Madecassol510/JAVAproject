@@ -127,7 +127,7 @@ public class TestTotalButtonPanel extends JPanel {
 					public void actionPerformed(ActionEvent e) {
 						// 버튼 클릭시 상세페이지 이동
 						System.out.println("클릭한 항목: " + itemText);
-						FrameBase.getInstance(new CafeInfo(CafeDAO.searchCafe(itemText)));
+						FrameBase.getInstance2(new CafeInfo(CafeDAO.searchCafe(itemText))); // 기존 프레임의 내용을 지우지 않고 새 프레임만 띄우는 메소드 getInstance2 설정
 					}
 				});
 				add(itemButton);

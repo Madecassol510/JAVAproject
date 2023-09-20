@@ -39,4 +39,15 @@ public class FrameBase extends JFrame{
 		instance.revalidate();
 		instance.repaint();
 	}
+	
+	public static void getInstance2(JPanel e) { //기존 프레임이나 컴포넌트의 내용을 지우지 않고 새 컴포넌트만 띄우는 메소드 새창 띄우고 기본 창으로 돌아오는데 유용
+		if(instance == null) {
+			instance = new FrameBase(e);
+		}	
+		//instance.getContentPane().removeAll();
+		instance.getContentPane().add(e);
+		
+		instance.revalidate();
+		instance.repaint();
+	}
 }

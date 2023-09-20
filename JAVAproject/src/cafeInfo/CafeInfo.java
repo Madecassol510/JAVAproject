@@ -1,72 +1,75 @@
 package cafeInfo;
 
+import java.awt.AlphaComposite;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 import cafeVO.Cafe;
 import cafeVO.CafeDAO;
+import search.SearchWindow;
 
 
 
 //카페를 클릭했을 때 보여지는 상세정보 페이지
+
+
 public class CafeInfo extends JPanel {
 	
-	static JFrame infoFrame = new JFrame("상세 정보");
+	public JFrame infoFrame = new JFrame("상세 정보");
 	
 	public CafeInfo(Cafe c) { //Cafe형 객체
-		CafeDAO cd = new CafeDAO(); //cafe db 객체 선언
-		
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		infoFrame.setBounds((int)tk.getScreenSize().getWidth()/2 -250,
 				(int)tk.getScreenSize().getHeight()/2-300, 500,700);
 		Dimension dim = new Dimension(500, 700);
 		infoFrame.setSize(dim);
+		infoFrame.setResizable(false);
+		infoFrame.setUndecorated(true);
 		
         
 		//프레임의 배경화면 설정
 		Container contentPane = infoFrame.getContentPane();
-		ImageIcon background1 = new ImageIcon("JAVAproject/src/soldesk_pro01_img/infobackground.jpg");
-		Image originalImage = background1.getImage();
+		ImageIcon imageicon = new ImageIcon("JAVAproject/src/soldesk_pro01_img/infobackground.jpg");
 		
-		Image resizedImage = originalImage.getScaledInstance(500, 700, Image.SCALE_SMOOTH);
-		ImageIcon resizedIcon = new ImageIcon(resizedImage);
 		
+		ImageIcon resizedImageIcon = new ImageIcon(ImgTransSetting(imageicon, 500, 700, 0.1f));
 		
 		JLabel backgroundLabel = new JLabel();
         backgroundLabel.setBounds(0, 0, infoFrame.getWidth(), infoFrame.getHeight());
 		contentPane.add(backgroundLabel);
 		
-		//라벨 덧씌우기
-		JLabel backgroundLabel2 = new JLabel(resizedIcon);
+		
+		//라벨 덧씌우기 (보더레이아웃 효과를 내기 위해 설정)
+		JLabel backgroundLabel2 = new JLabel(resizedImageIcon);
 		backgroundLabel2.setBounds(0, 0, backgroundLabel.getWidth(), backgroundLabel.getHeight());
 		backgroundLabel2.setLayout(new BorderLayout());
 		backgroundLabel2.setOpaque(false);
@@ -77,28 +80,33 @@ public class CafeInfo extends JPanel {
 		
 		// JPanel
 
-		// 이미지 부분
-		JPanel imgpanel = new JPanel();
+		// 이미지 할당하는 클래스 CafeIf 및 메서드 호출
 		final int cafeNum = 1;
 		int cafeFlag = -1;
-		imgpanel.setOpaque(false);
+		JPanel imgpanel = new JPanel();
 		
+		CafeDAO cd = new CafeDAO(); 
 		CafeUrl cafeUrlInstance = new CafeUrl();
-
-		//String[] Cafeurl = { "soldesk_pro01_img/투썸_종각역1.jpg","말할수없는비밀2.jpg", "인사이드아웃2.png", "겨울왕국2.png", "당신거기있어줄래요2.png", "스파이더맨2.png",
-			//	"어벤져스2.png", "부산행2.png" };
-
+		
+		
+		imgpanel.setOpaque(false);
 		ImageIcon[] cafeImg = new ImageIcon[cafeUrlInstance.getCafeUrls().length];
 		String[] cafeimgname = new String[cafeUrlInstance.getCafeUrls().length];
 		
-		//cafe 이름에 맞는 이미지를 할당하기 위한 배열에 이름 할당 for문
 		for(int i=0; i<cafeUrlInstance.getCafeUrls().length; i++)
 		{
 		cafeimgname[i]= cd.getList().get(i).getName();
 		}
 		
 		//cafe 객체의 이름에 맞는 배열의 요소 찾기 if문
-	
+		
+		//for (int i=0; i < cd.getList().size(); i++)
+		//	if ( c.getName() == cafeimgname[i])
+		//	{
+		//			cafeFlag = i;					 
+		//	}
+		
+		
 		if ( c.getName() == cafeimgname[0])
 		{
 				cafeFlag = 0;					 
@@ -190,10 +198,11 @@ public class CafeInfo extends JPanel {
 		else if( c.getName() == cafeimgname[29]) {	
 			cafeFlag = 29;					
 		}
-		else {
-			JLabel noImageLabel = new JLabel("이미지 없음");
-			imgpanel.add(noImageLabel);
-		}
+		
+		//if(c.getName() != ){
+		//	JLabel noImageLabel = new JLabel("이미지 없음");
+		//	imgpanel.add(noImageLabel);
+		//}
 		
 		// if로 이미지 삽입
 		if (cafeFlag >= 0 && cafeFlag < cafeImg.length) {
@@ -204,26 +213,29 @@ public class CafeInfo extends JPanel {
 			JLabel img = new JLabel(cafeImg[cafeFlag]);
 			imgpanel.add(img);
 			imgpanel.setAlignmentX(1.0f);
+			imgpanel.setVisible(true);
 		} 
 		else {
 			JLabel noImageLabel = new JLabel("이미지 없음");
 			imgpanel.add(noImageLabel);
 		}
-	
-		
 
-	
+		//카페 제목 주소 부분
 		JTextPane inform = new JTextPane();
-		String text = "\n카페 제목: " + c.getName() + "\n주 소 : " +  c.getAdress();
+		if(inform.getName() != null) {
+			inform.setText("");
+		} else {
+		String text = "\n카페 제목: " + c.getName() + "\n주        소 : " +  c.getAdress();
 		//inform.setPreferredSize(new Dimension(400,90));//(200,280)
 		inform.setPreferredSize(new Dimension(270, 90));
 		inform.setEditable(false);		
 		inform.setText(text);
-		inform.setOpaque(false); //투명하게 하는 메서드
+		inform.setOpaque(false); //투명하게 하는 메서드		
 		StyledDocument doc = inform.getStyledDocument();
-		SimpleAttributeSet center = new SimpleAttributeSet();
-		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
-		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		SimpleAttributeSet left = new SimpleAttributeSet();
+		StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT);
+		doc.setParagraphAttributes(0, doc.getLength(), left, false);
+		}
 		
 		// 이미지 패널과 상호주소 패널을 합친 카페 정보 패널
 		JPanel cafeInfoPanel = new JPanel();
@@ -241,8 +253,7 @@ public class CafeInfo extends JPanel {
 		// CafeInfoPanel cafeInfoPanel = new CafeInfoPanel(c);
 		// cafeInfoPanel.setVisible(true);
 		backgroundLabel2.add(cafeInfoPanel, BorderLayout.NORTH);
-
-		backgroundLabel2.add(new InfoPanel(), BorderLayout.SOUTH);// 정보창 버튼 패널 추가
+		backgroundLabel2.add(InfoP(), BorderLayout.SOUTH);// 정보창 버튼 패널 추가
 		
 		
 		//카페 메뉴
@@ -253,7 +264,6 @@ public class CafeInfo extends JPanel {
 		backgroundLabel2.add(menuPanel, BorderLayout.CENTER);
 		
 		ImagePanel menuOut = new ImagePanel("JAVAproject/src/soldesk_pro01_img/menubackground.jpg");
-		
 		menuOut.setOpaque(false);
 		menuPanel.add(menuOut);
 		
@@ -269,7 +279,7 @@ public class CafeInfo extends JPanel {
 		menu.setVisible(true);
 		
 		menuOut.add(menu);
-		c.CafeMenu();
+		
 		
 		
 		JTextArea CoffeeMenu = new JTextArea(" 커피\n");
@@ -403,26 +413,25 @@ public class CafeInfo extends JPanel {
 		TASettings(TeaMenu);
 		TASettings(TeaPrice);
         
+		
      // 카페메뉴 끝
         infoFrame.setVisible(true); //프레임 on
+        
 	}    
-	
-		
-	
-		
 
 	private static void TASettings(JTextArea textArea) { //textarea 전체에 디자인하는 메서드
 		textArea.setEditable(false);
 		textArea.setOpaque(false);
-		Font font = new Font("카페24 슈퍼매직 OTF Regular", 13, 10); //폰트 적용 x
+		Font font = new Font("카페24 슈퍼매직 OTF Regular", 15, 15); //폰트 적용 x
 		textArea.setFont(font);
 	}
+	/*
 	class CustomBorder extends MatteBorder {
 		public CustomBorder(Color color, int thickness, boolean top, boolean left, boolean bottom, boolean right) {
         super(top ? thickness : 0, left ? thickness : 0, bottom ? thickness : 0, right ? thickness : 0, color);
 			}
 		}
-	
+	*/ 
 	class ImagePanel extends JPanel {
 	    private BufferedImage backgroundImage;
 
@@ -440,5 +449,64 @@ public class CafeInfo extends JPanel {
 	            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
 	        }
 	    }
-	} 
+	}
+	
+	private static BufferedImage ImgTransSetting(ImageIcon imageicon, int width, int height, float trans) {
+		Image image = imageicon.getImage();
+		
+		// 새로운 이미지 생성
+        BufferedImage newImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2dNew = newImage.createGraphics();
+
+        // 투명도 조절 (0.0에서 1.0 사이의 값, 0.5는 반투명)
+        float transparency = trans;
+        AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
+        g2dNew.setComposite(alpha);
+        
+        // 원본 이미지를 새 이미지에 그립니다.
+        g2dNew.drawImage(image, 0, 0, width, height, null);
+
+        // 그래픽 컨텍스트를 해제합니다.
+        g2dNew.dispose();
+        
+        return newImage;
+	}
+	public JPanel InfoP() {
+		JPanel InfoPanel = new JPanel();
+		InfoPanel.setPreferredSize(new Dimension(484, 120));
+		InfoPanel.setBackground(Color.green);
+		InfoPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 0));
+		InfoPanel.setOpaque(false);
+		ArrayList<JButton> menuButtons = new ArrayList<JButton>();
+
+		// 버튼 생성 및 이미지 아이콘 설정
+		menuButtons.add(new JButton("검색"));
+		menuButtons.add(new JButton("게임"));
+		menuButtons.add(new JButton("홈"));
+
+		for (JButton button : menuButtons) {
+			InfoPanel.add(button);
+			button.setPreferredSize(new Dimension(120, 80));
+			button.addActionListener(new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	if (e.getActionCommand().equals("검색")) {
+	        			SearchWindow sw = new SearchWindow();
+
+	        		} else if (e.getActionCommand().equals("게임")) {
+	        			
+	        		}
+
+	        		else if (e.getActionCommand().equals("홈")) {
+	        			
+	        			infoFrame.dispose();
+	        		}
+	            }
+			});
+			// button.setHorizontalAlignment(SwingConstants.CENTER);
+			
+		}
+		return InfoPanel;
+	}
+	
 }

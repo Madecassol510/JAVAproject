@@ -6,11 +6,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -18,9 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import cafeVO.CafeDAO;
+import mainMenu.FrameBase;
+import selectMenu.SelectMenu;
 
 public class ResultPanel extends JPanel{
 		
+import selectMenu.SelectMenu;
 	
 	int pageIndex;
 	
@@ -120,7 +120,7 @@ public class ResultPanel extends JPanel{
 				resultButton.addActionListener(new ActionListener() {		
 					@Override
 					public void actionPerformed(ActionEvent e) {
-					
+						FrameBase.getInstance(new SelectMenu(ResultCheck.resultCategory, menuName));
 						
 					}
 				});
